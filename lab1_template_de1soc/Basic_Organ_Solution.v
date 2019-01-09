@@ -6,7 +6,7 @@ module Basic_Organ_Solution(
 
     //////////// LED //////////
     LEDR,
-
+ 
     //////////// KEY //////////
     KEY,
 
