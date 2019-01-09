@@ -199,23 +199,24 @@ wire Sample_Clk_Signal;
 //
 // Insert your code for Lab1 here!
 //
-//
-            
-
-
-
-
-
-
-            
-
 assign Sample_Clk_Signal = Clock_1KHz;
 
 //Audio Generation Signal
 //Note that the audio needs signed data - so convert 1 bit to 8 bits signed
-wire [7:0] audio_data = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
+wire [7:0] audio_data;// = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
 
+always @(SW[0]) begin  //KEY2 will reset the sampling frequency
+// check if you can have SW in sensitivty list
 
+if (SW[0] == 0) begin
+
+audio_data = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //Bit concatenation
+
+end 
+
+else
+audio_data = 0;
+end
 
                 
 //=====================================================================================
