@@ -199,8 +199,7 @@ wire Sample_Clk_Signal;
 //
 // Insert your code for Lab1 here!
 //
-         
-
+       
 assign Sample_Clk_Signal = Clock_1KHz;
 
 
@@ -211,7 +210,7 @@ wire [7:0] audio_data;// = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //gene
 always @(posedge CLOCK_50) begin  //KEY2 will reset the sampling frequency
 // check if you can have SW in sensitivty list
 
-if (SW[0] == 0) begin
+if (SW[0] == 1) begin // change this to 1 later
 
 audio_data = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //Bit concatenation
 
@@ -220,6 +219,23 @@ end
 else
 audio_data = 0;
 end
+
+
+reg[31:0] clock_sw_div;
+//condition ? value_if_true : value_if_false
+assign clock_sw_div = (SW[3:1] == 3'b000)  ? 32'hBAB9//523
+					: (SW[3:1] == 3'b001)  ? 32'hA65D //587
+					: (SW[3:1] == 3'b010)  ? 32'h9430 //659
+					: (SW[3:1] == 3'b011)  ? 32'h8BE9 //698
+					: (SW[3:1] == 3'b100)  ? 32'h7CB8 //783
+					: (SW[3:1] == 3'b101)  ? 32'h6EF9 // 880
+					: (SW[3:1] == 3'b110)  ? 32'h62F1 //987
+					: (SW[3:1] == 3'b111)  ? 32'h5D5D //1046 
+					: 0;
+
+
+
+
 
                 
 //=====================================================================================
@@ -338,7 +354,7 @@ Gen_1KHz_clk
 .inclk(CLK_50M),
 .outclk(Clock_1KHz),
 .outclk_Not(),
-.div_clk_count(32'h61A6), //change this if necessary to suit your module
+.div_clk_count(clock_sw_div), //change this if necessary to suit your module 
 .Reset(1'h1)); 
 
 wire speed_up_raw;
