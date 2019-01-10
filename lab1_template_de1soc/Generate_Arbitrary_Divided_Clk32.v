@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Reset);
     input inclk;
-	 input Reset; //KEY2 will reset the sampling frequency
+	 input Reset;
     output outclk;
 	 output outclk_Not;
 	 input[31:0] div_clk_count;
