@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Basic_Organ_Solution
-Thu Jan 10 10:28:29 2019
+Thu Jan 10 12:24:18 2019
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -87,7 +87,7 @@ agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +---------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Jan 10 10:28:28 2019      ;
+; Analysis & Synthesis Status     ; Successful - Thu Jan 10 12:24:18 2019      ;
 ; Quartus II 64-Bit Version       ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name                   ; Basic_Organ_Solution                       ;
 ; Top-level Entity Name           ; Basic_Organ_Solution                       ;
@@ -293,14 +293,14 @@ agreement for further details.
 +---------------------------------------------+--------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                ;
 +---------------------------------------------+--------------------------------------------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 3100                                                                                 ;
+; Estimate of Logic utilization (ALMs needed) ; 3102                                                                                 ;
 ;                                             ;                                                                                      ;
-; Combinational ALUT usage for logic          ; 1998                                                                                 ;
+; Combinational ALUT usage for logic          ; 2011                                                                                 ;
 ;     -- 7 input functions                    ; 22                                                                                   ;
-;     -- 6 input functions                    ; 820                                                                                  ;
-;     -- 5 input functions                    ; 455                                                                                  ;
+;     -- 6 input functions                    ; 822                                                                                  ;
+;     -- 5 input functions                    ; 453                                                                                  ;
 ;     -- 4 input functions                    ; 139                                                                                  ;
-;     -- <=3 input functions                  ; 562                                                                                  ;
+;     -- <=3 input functions                  ; 575                                                                                  ;
 ;                                             ;                                                                                      ;
 ; Dedicated logic registers                   ; 5264                                                                                 ;
 ;                                             ;                                                                                      ;
@@ -312,7 +312,7 @@ agreement for further details.
 ;                                             ;                                                                                      ;
 ; Maximum fan-out node                        ; Generate_Arbitrary_Divided_Clk32:Generate_LCD_scope_Clk|var_clk_div32:Div_Clk|tc_reg ;
 ; Maximum fan-out                             ; 2712                                                                                 ;
-; Total fan-out                               ; 31023                                                                                ;
+; Total fan-out                               ; 31071                                                                                ;
 ; Average fan-out                             ; 3.90                                                                                 ;
 +---------------------------------------------+--------------------------------------------------------------------------------------+
 
@@ -322,7 +322,7 @@ agreement for further details.
 +---------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                                                              ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                         ; Library Name ;
 +---------------------------------------------------------------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |Basic_Organ_Solution                                                                                   ; 1998 (47)         ; 5264 (52)    ; 55552             ; 0          ; 147  ; 0            ; |Basic_Organ_Solution                                                                                                                                                                                                                                                                                                                                       ; work         ;
+; |Basic_Organ_Solution                                                                                   ; 2011 (60)         ; 5264 (52)    ; 55552             ; 0          ; 147  ; 0            ; |Basic_Organ_Solution                                                                                                                                                                                                                                                                                                                                       ; work         ;
 ;    |Generate_Arbitrary_Divided_Clk32:Gen_1KHz_clk|                                                      ; 48 (0)            ; 39 (0)       ; 0                 ; 0          ; 0    ; 0            ; |Basic_Organ_Solution|Generate_Arbitrary_Divided_Clk32:Gen_1KHz_clk                                                                                                                                                                                                                                                                                         ; work         ;
 ;       |var_clk_div32:Div_Clk|                                                                           ; 48 (48)           ; 39 (39)      ; 0                 ; 0          ; 0    ; 0            ; |Basic_Organ_Solution|Generate_Arbitrary_Divided_Clk32:Gen_1KHz_clk|var_clk_div32:Div_Clk                                                                                                                                                                                                                                                                   ; work         ;
 ;    |Generate_Arbitrary_Divided_Clk32:Gen_2Hz_clk|                                                       ; 48 (0)            ; 39 (0)       ; 0                 ; 0          ; 0    ; 0            ; |Basic_Organ_Solution|Generate_Arbitrary_Divided_Clk32:Gen_2Hz_clk                                                                                                                                                                                                                                                                                          ; work         ;
@@ -775,6 +775,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                                                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |Basic_Organ_Solution|clock_sw_div[12]                                                                                                                                                                                                                  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; No name available in netlist                                                                                                                                                                                                                            ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |Basic_Organ_Solution|sld_hub:auto_hub|alt_sld_fab:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:instrumentation_fabric|alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|hub_minor_ver_reg[2]                    ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |Basic_Organ_Solution|sld_hub:auto_hub|alt_sld_fab:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:instrumentation_fabric|alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|identity_contrib_shift_reg[1]           ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |Basic_Organ_Solution|sld_hub:auto_hub|alt_sld_fab:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:instrumentation_fabric|alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|hub_minor_ver_reg[1]                    ;
@@ -3053,15 +3055,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Port                  ; Type   ; Severity ; Details                       ;
 +-----------------------+--------+----------+-------------------------------+
 ; outclk_Not            ; Output ; Info     ; Explicitly unconnected        ;
-; div_clk_count[14..13] ; Input  ; Info     ; Stuck at VCC                  ;
-; div_clk_count[8..7]   ; Input  ; Info     ; Stuck at VCC                  ;
-; div_clk_count[2..1]   ; Input  ; Info     ; Stuck at VCC                  ;
-; div_clk_count[31..15] ; Input  ; Info     ; Stuck at GND                  ;
-; div_clk_count[12..9]  ; Input  ; Info     ; Stuck at GND                  ;
-; div_clk_count[4..3]   ; Input  ; Info     ; Stuck at GND                  ;
-; div_clk_count[6]      ; Input  ; Info     ; Stuck at GND                  ;
-; div_clk_count[5]      ; Input  ; Info     ; Stuck at VCC                  ;
-; div_clk_count[0]      ; Input  ; Info     ; Stuck at GND                  ;
+; div_clk_count[31..16] ; Input  ; Info     ; Stuck at GND                  ;
+; div_clk_count[1]      ; Input  ; Info     ; Stuck at GND                  ;
 ; Reset                 ; Input  ; Info     ; Stuck at VCC                  ;
 +-----------------------+--------+----------+-------------------------------+
 
@@ -3290,17 +3285,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     SLD                                                                       ; 32    ;
 ;     plain                                                                     ; 46    ;
 ; arriav_io_obuf                                                                ; 60    ;
-; arriav_lcell_comb                                                             ; 50    ;
+; arriav_lcell_comb                                                             ; 63    ;
 ;     arith                                                                     ; 32    ;
 ;         1 data inputs                                                         ; 32    ;
-;     normal                                                                    ; 18    ;
+;     normal                                                                    ; 31    ;
 ;         0 data inputs                                                         ; 2     ;
-;         1 data inputs                                                         ; 7     ;
-;         2 data inputs                                                         ; 3     ;
-;         3 data inputs                                                         ; 1     ;
+;         1 data inputs                                                         ; 8     ;
+;         2 data inputs                                                         ; 5     ;
+;         3 data inputs                                                         ; 11    ;
 ;         4 data inputs                                                         ; 1     ;
-;         5 data inputs                                                         ; 2     ;
-;         6 data inputs                                                         ; 2     ;
+;         6 data inputs                                                         ; 4     ;
 ; blackbox                                                                      ; 16    ;
 ;         ar_clk_div32:Div_Clk                                                  ; 1     ;
 ;         ar_clk_div32:Div_Clk                                                  ; 1     ;
@@ -3321,7 +3315,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; boundary_port                                                                 ; 438   ;
 ;                                                                               ;       ;
 ; Max LUT depth                                                                 ; 2.50  ;
-; Average LUT depth                                                             ; 0.66  ;
+; Average LUT depth                                                             ; 0.67  ;
 +-------------------------------------------------------------------------------+-------+
 
 
@@ -3991,7 +3985,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
-    Info: Processing started: Thu Jan 10 10:27:20 2019
+    Info: Processing started: Thu Jan 10 12:23:20 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Basic_Organ_Solution -c Basic_Organ_Solution
 Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
 Info (12021): Found 1 design units, including 1 entities, in source file sevensegmentdisplaydecoder.qxp
@@ -4013,14 +4007,14 @@ Info (12021): Found 1 design units, including 1 entities, in source file basic_o
     Info (12023): Found entity 1: Basic_Organ_Solution
 Info (12127): Elaborating entity "Basic_Organ_Solution" for the top level hierarchy
 Warning (10858): Verilog HDL warning at Basic_Organ_Solution.v(88): object LED used but never assigned
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(384): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(442): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(457): truncated value with size 8 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(458): truncated value with size 8 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(459): truncated value with size 8 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(460): truncated value with size 8 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(461): truncated value with size 8 to match size of target (7)
-Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(462): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(400): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(458): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(473): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(474): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(475): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(476): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(477): truncated value with size 8 to match size of target (7)
+Warning (10230): Verilog HDL assignment warning at Basic_Organ_Solution.v(478): truncated value with size 8 to match size of target (7)
 Warning (10030): Net "LED" at Basic_Organ_Solution.v(88) has no driver or initial value, using a default initial value '0'
 Warning (10034): Output port "LEDR[9..8]" at Basic_Organ_Solution.v(50) has no driver
 Warning (12125): Using design file doublesync.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
@@ -4230,25 +4224,23 @@ Info (35003): Optimize away 49 nodes that do not fanout to OUTPUT or BIDIR pins
     Info (35004): Node: "Generate_Arbitrary_Divided_Clk32:Gen_1KHz_clk|var_clk_div32:Div_Clk|outclk_not"
     Info (35004): Node: "Generate_Arbitrary_Divided_Clk32:Gen_2Hz_clk|var_clk_div32:Div_Clk|tc_not_reg"
     Info (35004): Node: "Generate_Arbitrary_Divided_Clk32:Gen_2Hz_clk|var_clk_div32:Div_Clk|outclk_not"
-Warning (21074): Design contains 8 input pin(s) that do not drive logic
+Warning (21074): Design contains 6 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "KEY[3]"
-    Warning (15610): No output dependent on input pin "SW[2]"
-    Warning (15610): No output dependent on input pin "SW[3]"
     Warning (15610): No output dependent on input pin "SW[4]"
     Warning (15610): No output dependent on input pin "SW[5]"
     Warning (15610): No output dependent on input pin "SW[6]"
     Warning (15610): No output dependent on input pin "SW[7]"
     Warning (15610): No output dependent on input pin "AUD_ADCDAT"
-Info (21057): Implemented 6894 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 6907 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 19 input pins
     Info (21059): Implemented 56 output pins
     Info (21060): Implemented 76 bidirectional pins
-    Info (21061): Implemented 6434 logic cells
+    Info (21061): Implemented 6447 logic cells
     Info (21064): Implemented 308 RAM segments
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 118 warnings
-    Info: Peak virtual memory: 4966 megabytes
-    Info: Processing ended: Thu Jan 10 10:28:29 2019
-    Info: Elapsed time: 00:01:09
-    Info: Total CPU time (on all processors): 00:01:46
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 116 warnings
+    Info: Peak virtual memory: 4973 megabytes
+    Info: Processing ended: Thu Jan 10 12:24:19 2019
+    Info: Elapsed time: 00:00:59
+    Info: Total CPU time (on all processors): 00:01:41
 
 
