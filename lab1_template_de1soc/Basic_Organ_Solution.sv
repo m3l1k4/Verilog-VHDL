@@ -228,12 +228,12 @@ always_comb begin
 
 if (SW[3:1] == 3'b000)  begin
 	clock_sw_div = 32'hBAB9; //523
-	disp_note = {character_1,character_K,character_H,character_lowercase_z} ;
+	//disp_note = {character_1,character_K,character_H,character_lowercase_z} ;
 						end
 
 else if (SW[3:1] == 3'b001) begin
 	clock_sw_div = 32'hA65D; //587
-	disp_note = {character_2,character_K,character_H,character_lowercase_z} ;
+	//disp_note = {character_2,character_K,character_H,character_lowercase_z} ;
 							end
 							
 else if (SW[3:1] == 3'b011) begin

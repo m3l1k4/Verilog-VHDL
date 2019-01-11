@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Basic_Organ_Solution
-Thu Jan 10 16:24:16 2019
+Thu Jan 10 16:27:26 2019
 Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
 
 
@@ -11,6 +11,7 @@ Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
   5. Analysis & Synthesis Messages
+  6. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -37,7 +38,7 @@ agreement for further details.
 +--------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                             ;
 +-----------------------------+--------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Thu Jan 10 16:24:16 2019          ;
+; Analysis & Synthesis Status ; Failed - Thu Jan 10 16:27:26 2019          ;
 ; Quartus II 64-Bit Version   ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
 ; Revision Name               ; Basic_Organ_Solution                       ;
 ; Top-level Entity Name       ; Basic_Organ_Solution                       ;
@@ -164,7 +165,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
-    Info: Processing started: Thu Jan 10 16:23:51 2019
+    Info: Processing started: Thu Jan 10 16:27:03 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Basic_Organ_Solution -c Basic_Organ_Solution
 Info (11104): Parallel Compilation has detected 4 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 2 of the 2 physical processors detected instead.
 Warning (10238): Verilog Module Declaration warning at Basic_Organ_Solution.sv(40): ignored anonymous port(s) indicated by duplicate or dangling comma(s) in the port list for module "Basic_Organ_Solution"
@@ -231,10 +232,17 @@ Info (10041): Inferred latch for "disp_note[29]" at Basic_Organ_Solution.sv(234)
 Info (10041): Inferred latch for "disp_note[30]" at Basic_Organ_Solution.sv(234)
 Info (10041): Inferred latch for "disp_note[31]" at Basic_Organ_Solution.sv(234)
 Error (12153): Can't elaborate top-level user hierarchy
+Info (144001): Generated suppressed messages file C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/Basic_Organ_Solution.map.smsg
 Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 2 errors, 13 warnings
-    Error: Peak virtual memory: 4826 megabytes
-    Error: Processing ended: Thu Jan 10 16:24:16 2019
-    Error: Elapsed time: 00:00:25
-    Error: Total CPU time (on all processors): 00:00:51
+    Error: Peak virtual memory: 4819 megabytes
+    Error: Processing ended: Thu Jan 10 16:27:27 2019
+    Error: Elapsed time: 00:00:24
+    Error: Total CPU time (on all processors): 00:00:47
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/Basic_Organ_Solution.map.smsg.
 
 
