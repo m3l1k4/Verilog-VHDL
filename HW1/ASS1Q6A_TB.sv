@@ -5,8 +5,8 @@ reg [7:0] in;
 reg clk, en;
 wire [7:0] out;
 
-test test(.CLOCK_50(clk),.en(en),.in(in), .out(out));
-
+test test(.CLOCK_50(clk),.en(en),.in(in), .out(out)); // wave with en
+//test test(.CLOCK_50(clk),.in(in), .out(out));  // wave without en
 
 initial forever begin
 clk = 1;
