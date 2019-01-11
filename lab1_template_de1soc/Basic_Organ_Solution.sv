@@ -222,52 +222,70 @@ end
 
 
 reg[31:0] clock_sw_div;
-reg [31:0] disp_note;
+//logic [31:0] KHZ_1 = {character_1,character_K,character_H,character_lowercase_z} ;
+logic [31:0] Do = {character_D,character_lowercase_o} ;
+logic [31:0] Re = {character_R,character_lowercase_e} ;
+logic [31:0] Mi = {character_M,character_lowercase_i} ;
+logic [31:0] Fa = {character_F,character_lowercase_a} ;
+logic [31:0] So = {character_S,character_lowercase_o} ;
+logic [31:0] La = {character_L,character_lowercase_a} ;
+logic [31:0] Si = {character_S,character_lowercase_i} ;
+
+logic [31:0] disp_note;
 
 always_comb begin
 
 if (SW[3:1] == 3'b000)  begin
 	clock_sw_div = 32'hBAB9; //523
-	//disp_note = {character_1,character_K,character_H,character_lowercase_z} ;
+	disp_note = Do;
 						end
 
 else if (SW[3:1] == 3'b001) begin
 	clock_sw_div = 32'hA65D; //587
+	disp_note = Re;
 	//disp_note = {character_2,character_K,character_H,character_lowercase_z} ;
 							end
 							
 else if (SW[3:1] == 3'b011) begin
 	clock_sw_div = 32'h9430;//659
+	disp_note = Mi;
 	
 							end
 
 else if (SW[3:1] == 3'b010) begin
 	clock_sw_div = 32'h8BE9;//698
+	disp_note = Fa;
 	
 							end
 
 else if (SW[3:1] == 3'b110) begin
 	clock_sw_div = 32'h7CB8; //783
+	disp_note = So;
 	
 							end
 		
 else if (SW[3:1] == 3'b100) begin
 	clock_sw_div = 32'h6EF9; // 880
+	disp_note = La;
 	
 							end
 	
 else if (SW[3:1] == 3'b101) begin
 	clock_sw_div = 32'h62F1; //987
+	disp_note = Si;
 	
 							end
 	
 else if (SW[3:1] == 3'b111) begin
 	clock_sw_div = 32'h5D5D; //1046
+	disp_note = Do;
 	
 							end
 	
-else
-	clock_sw_div = 0;				
+else begin
+	clock_sw_div = 0;
+	disp_note = 0;	
+	end
 				
 
 
