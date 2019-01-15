@@ -5,26 +5,27 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
     output reg outclk;
 	 output outclk_Not;
 	 input[31:0] div_clk_count;
-	 
+	/* 
 	 var_clk_div32 Div_Clk(.inclk(inclk),.outclk(outclk),
 	 .outclk_not(outclk_Not),.clk_count(div_clk_count),.Reset(Reset));
+*/
 
 	// outclk_not , is not used, as in left open without a signal going anywhere in the basic_organ_solution 
 	 // reset is hard coded signal with 1 in original basic_org_sol 
-	 /*
+	// /*
 	 logic [31:0] count;
 
 	 
 	 always @(posedge inclk) begin
 	 
-	 if (reset==??) begin   
-				count <= 0;
-				outclk <= 0;
-	 end
+//	 if (reset==0) begin   
+	//			count <= 0;
+		//		outclk <= 0;
+	 //end
 	 
 	 
-	 else begin 
-		if (  count == (div_clk_count) begin
+	 //else begin 
+		if ( count == div_clk_count) begin
 		count <=0;
 		outclk <= ~outclk;
 				  end
@@ -32,12 +33,13 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 		else begin
 		
 		count <= count +1 ;
-		end 
+				end 
 				
 	 
+//	 end
 	 
 	 end 
-	 */ 
+	// */ 
 endmodule 
 
 
