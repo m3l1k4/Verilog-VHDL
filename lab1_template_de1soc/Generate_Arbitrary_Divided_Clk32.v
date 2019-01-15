@@ -11,6 +11,7 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 
 	// outclk_not , is not used, as in left open without a signal going anywhere in the basic_organ_solution 
 	 // reset is hard coded signal with 1 in original basic_org_sol 
+	 /*
 	 logic [31:0] count;
 
 	 
@@ -36,8 +37,8 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 	 
 	 
 	 end 
-	 
-endmodule
+	 */ 
+endmodule 
 
 
 /*
