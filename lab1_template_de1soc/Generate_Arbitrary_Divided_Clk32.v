@@ -25,7 +25,7 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 	 
 	 
 	 //else begin 
-		if ( count == div_clk_count) begin
+		if ( count >= div_clk_count) begin
 		count <=0;
 		outclk <= ~outclk;
 				  end

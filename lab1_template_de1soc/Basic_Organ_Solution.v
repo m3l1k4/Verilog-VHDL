@@ -208,9 +208,9 @@ assign Sample_Clk_Signal = Clock_1KHz;
 wire [7:0] audio_data;// = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
 
 always @(posedge CLOCK_50) begin  //KEY2 will reset the sampling frequency
-// check if you can have SW in sensitivty list
 
-if (SW[0] == 1) begin // change this to 1 later
+
+if (SW[0] == 1) begin 
 
 audio_data = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //Bit concatenation
 
@@ -290,6 +290,10 @@ else begin
 
 
 end
+
+
+
+LED_CONT DANCE( .LEDS(LED), .clk(CLOCK_50), .reset(SW[0]));
 
 /*
 //condition ? value_if_true : value_if_false
