@@ -435,3 +435,4 @@ lab1_template_de1soc/db/Basic_Organ_Solution.(9).cnf.hdb
 *.qsf
 *.db_info
 *.flock
+*.qxp
