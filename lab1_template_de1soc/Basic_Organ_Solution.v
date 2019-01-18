@@ -207,7 +207,7 @@ assign Sample_Clk_Signal = Clock_1KHz;
 //Note that the audio needs signed data - so convert 1 bit to 8 bits signed
 wire [7:0] audio_data;// = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
 
-always @(posedge CLOCK_50) begin  //KEY2 will reset the sampling frequency
+always @(posedge CLOCK_50) begin 
 
 
 if (SW[0] == 1) begin 
@@ -231,7 +231,12 @@ logic [31:0] So = {character_S,character_lowercase_o} ;
 logic [31:0] La = {character_L,character_lowercase_a} ;
 logic [31:0] Si = {character_S,character_lowercase_i} ;
 
-logic [31:0] disp_note;
+logic [31:0] disp_note; // for do re mi fa so la si do
+
+
+
+///// note display 
+
 
 always_comb begin
 
@@ -292,7 +297,12 @@ else begin
 end
 
 
+// Switch position display in the info 
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
 LED_CONT DANCE( .LEDS(LED), .clk(CLOCK_50), .reset(SW[0]));
 
 /*
@@ -348,7 +358,7 @@ Generate_LCD_scope_Clk(
 (* keep = 1, preserve = 1 *) logic ScopeChannelBSignal;
 
 assign ScopeChannelASignal = Sample_Clk_Signal;
-assign ScopeChannelBSignal = SW[1];
+assign ScopeChannelBSignal = SW_signal;
 
 scope_capture LCD_scope_channelA(
 .clk(scope_clk),
@@ -386,14 +396,14 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                      .InA(8'h00),
                           
                      //LCD display information signals
-                         .InfoH({character_A,character_U}),
-                          .InfoG({character_S,character_W}),
-                          .InfoF({character_space,character_A}),
-                          .InfoE({character_N,character_space}),
-                          .InfoD({character_E,character_X}),
-                          .InfoC({character_A,character_M}),
-                          .InfoB({character_P,character_L}),
-                          .InfoA({character_E,character_exclaim}),
+                         .InfoH({character_I,character_T}),
+                          .InfoG({character_space,character_I}),
+                          .InfoF({character_S,character_space}),
+                          .InfoE({character_A,character_L}),
+                          .InfoD({character_I,character_V}),
+                          .InfoC({character_E,character_exclaim}),
+                          .InfoB({character_exclaim,character_exclaim}),
+                          .InfoA({character_exclaim,character_exclaim}),
                           
                   //choose to display the values or the oscilloscope
                           .choose_scope_or_LCD(choose_LCD_or_SCOPE),
@@ -404,7 +414,7 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                           
                   //scope information generation
                           .ScopeInfoA(disp_note),
-                          .ScopeInfoB({character_S,character_W,character_1,character_space}),
+                          .ScopeInfoB(disp_data),
                           
                  //enable_scope is used to freeze the scope just before capturing 
                  //the waveform for display (otherwise the sampling would be unreliable)
