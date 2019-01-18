@@ -1,3 +1,4 @@
+ // HW#1 Question #5 
  module  test( in, out);
  
  input [7:0] in;

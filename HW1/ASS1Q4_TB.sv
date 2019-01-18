@@ -1,8 +1,5 @@
+// HW#1 Question #4 testbench
 module test_tb1();
-
-
-
-
 
 reg [4:0] one,two,three,four,five,six,seven,eight;
 wire [4:0] out;
