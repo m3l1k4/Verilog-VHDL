@@ -1,3 +1,5 @@
+// turning on and off LED's side to side using a statemachine
+
 module LED_CONT( LEDS, clk, reset);
 
 
@@ -13,7 +15,7 @@ enum { start,LEDS0, LEDS1,LEDS2,LEDS3,LEDS4,LEDS5,LEDS6,LEDS7,LEDS8} state;
 always @(posedge clk) begin
 
 
-if (reset ==0) begin
+if (reset ==0) begin  
 LEDS [7:0] <= 0 ;
 count<= 0;
 state<= LEDS0;
