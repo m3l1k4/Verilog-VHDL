@@ -1,3 +1,9 @@
+///================================
+// search the following keywords to get to each module 
+//#AUDIO_SIGNAL    
+// #MUSIC_SWITCH
+//#LED_BLINK
+///===============================
 `default_nettype none
 module Basic_Organ_Solution(
 
@@ -199,30 +205,39 @@ wire Sample_Clk_Signal;
 //
 // Insert your code for Lab1 here!
 //
-       
+
+//==============================================================================
+//==============================================================================     
+	  
 assign Sample_Clk_Signal = Clock_1KHz;
 
-
+//#AUDIO_SIGNAL
 //Audio Generation Signal
 //Note that the audio needs signed data - so convert 1 bit to 8 bits signed
-wire [7:0] audio_data;// = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
+wire [7:0] audio_data;
 
 always @(posedge CLOCK_50) begin 
 
 
-if (SW[0] == 1) begin 
+if (SW[0] == 1) begin   // switch 0 starts and stops audio 
 
-audio_data = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //Bit concatenation
+audio_data = {(~Sample_Clk_Signal),{7{Sample_Clk_Signal}}}; //Bit concatenation generate signed sample audio signal
 
 end 
 
 else
 audio_data = 0;
 end
+//==============================================================================
+//==============================================================================
+
+//#MUSIC_SWITCH
+
+reg[31:0] clock_sw_div; // for clock frequency values
+// gets passed to Generate_Arbitrary_Divided_Clk32 instantiation on line 470
 
 
-reg[31:0] clock_sw_div;
-//logic [31:0] KHZ_1 = {character_1,character_K,character_H,character_lowercase_z} ;
+//Notes for disply on the signal tap wave
 logic [31:0] Do = {character_D,character_lowercase_o} ;
 logic [31:0] Re = {character_R,character_lowercase_e} ;
 logic [31:0] Mi = {character_M,character_lowercase_i} ;
@@ -231,83 +246,113 @@ logic [31:0] So = {character_S,character_lowercase_o} ;
 logic [31:0] La = {character_L,character_lowercase_a} ;
 logic [31:0] Si = {character_S,character_lowercase_i} ;
 
-logic [31:0] disp_note; // for do re mi fa so la si do
 
+logic [31:0] disp_note; 
+// for do re mi fa so la si do 
+// gets passed to ScopeInfoA
 
+logic [31:0] disp_data; 
+// for switch position
+// gets passed to ScopeInfoB
 
-///// note display 
+logic [31:0] Do_dat = {character_S, character_0,character_0,character_0}; //(SW[3:1] == 3'b000)
+					//	,character_5,character_2,character_3,character_H,character_lowercase_z} ;//523 Hz
+logic [31:0] Re_dat = {character_S, character_0,character_0,character_1}; //(SW[3:1] == 3'b001)
+					//	,character_5,character_8,character_7,character_H,character_lowercase_z} ;//587 Hz
+logic [31:0] Mi_dat = {character_S, character_0,character_1,character_1}; //(SW[3:1] == 3'b011)
+					//	,character_6,character_5,character_9,character_H,character_lowercase_z} ; //659Hz
+logic [31:0] Fa_dat = {character_S, character_0,character_1,character_0}; //(SW[3:1] == 3'b010)
+					//	,character_6,character_9,character_8,character_H,character_lowercase_z} ; //698Hz
+logic [31:0] So_dat = {character_S, character_1,character_1,character_0}; //(SW[3:1] == 3'b110)
+					//	,character_7,character_8,character_3,character_H,character_lowercase_z} ; //783Hz
+logic [31:0] La_dat = {character_S, character_1,character_0,character_0}; //(SW[3:1] == 3'b100)
+					//	,character_8,character_8,character_0,character_H,character_lowercase_z} ;  // 880Hz
+logic [31:0] Si_dat = {character_S, character_1,character_0,character_1}; //(SW[3:1] == 3'b101) 
+					//	character_9,character_8,character_7,character_H,character_lowercase_z} ; //987HZ
+logic [31:0] Do2_dat = {character_S, character_1,character_1,character_1}; //(SW[3:1] == 3'b111)
+					//	,character_1,character_0,character_4,, character_6, character_H,character_lowercase_z} ;//1046Hz
 
+// block passing values to the clock divider 
+// and the info display 
 
-always_comb begin
+always_comb begin  
 
 if (SW[3:1] == 3'b000)  begin
-	clock_sw_div = 32'hBAB9; //523
+	clock_sw_div = 32'hBAB9; //523 Hz
 	disp_note = Do;
+	disp_data = Do_dat;
 						end
 
 else if (SW[3:1] == 3'b001) begin
-	clock_sw_div = 32'hA65D; //587
+	clock_sw_div = 32'hA65D; //587 Hz
 	disp_note = Re;
-	//disp_note = {character_2,character_K,character_H,character_lowercase_z} ;
+	disp_data =  Re_dat;
+
 							end
 							
 else if (SW[3:1] == 3'b011) begin
-	clock_sw_div = 32'h9430;//659
+	clock_sw_div = 32'h9430;//659Hz
 	disp_note = Mi;
+	disp_data = Mi_dat;
 	
 							end
 
 else if (SW[3:1] == 3'b010) begin
-	clock_sw_div = 32'h8BE9;//698
+	clock_sw_div = 32'h8BE9;//698Hz
 	disp_note = Fa;
+	disp_data = Fa_dat;
 	
 							end
 
 else if (SW[3:1] == 3'b110) begin
-	clock_sw_div = 32'h7CB8; //783
+	clock_sw_div = 32'h7CB8; //783Hz
 	disp_note = So;
+	disp_data = So_dat;
 	
 							end
 		
 else if (SW[3:1] == 3'b100) begin
-	clock_sw_div = 32'h6EF9; // 880
+	clock_sw_div = 32'h6EF9; // 880Hz
 	disp_note = La;
+	disp_data = La_dat;
 	
 							end
 	
 else if (SW[3:1] == 3'b101) begin
-	clock_sw_div = 32'h62F1; //987
+	clock_sw_div = 32'h62F1; //987HZ
 	disp_note = Si;
+	disp_data = Si_dat;
 	
 							end
 	
 else if (SW[3:1] == 3'b111) begin
-	clock_sw_div = 32'h5D5D; //1046
+	clock_sw_div = 32'h5D5D; //1046Hz
 	disp_note = Do;
+	disp_data = Do2_dat;
 	
 							end
 	
 else begin
 	clock_sw_div = 0;
 	disp_note = 0;	
+	disp_data = 0;
 	end
 				
 
 
 end
+//==============================================================================
+//==============================================================================
+
+//#LED_BLINK
+//LED GO BLINK BLINK instantiation  
+LED_CONT DANCE( .LEDS(LED), .clk(CLOCK_50), .reset(SW[0])); 
+// the LED's start lighting up with the same trigger as the sound SW0 
 
 
-// Switch position display in the info 
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
 
-///////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////
-
-
-//LED GO BLINK BLINK 
-LED_CONT DANCE( .LEDS(LED), .clk(CLOCK_50), .reset(SW[0]));
-
+//==============================================================================
+//==============================================================================
 
                 
 //=====================================================================================
@@ -343,10 +388,10 @@ Generate_LCD_scope_Clk(
 //Scope capture channels
 
 (* keep = 1, preserve = 1 *) logic ScopeChannelASignal;
-(* keep = 1, preserve = 1 *) logic ScopeChannelBSignal;
+(* keep = 1, preserve = 1 *) logic [2:0] ScopeChannelBSignal;
 
 assign ScopeChannelASignal = Sample_Clk_Signal;
-assign ScopeChannelBSignal = SW_signal;
+assign ScopeChannelBSignal = SW[3:1];
 
 scope_capture LCD_scope_channelA(
 .clk(scope_clk),
@@ -373,16 +418,27 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                     .lcd_e(LCD_EN), //don't touch
                     .clk(CLK_50M),  //don't touch
                           
-                        //LCD Display values
-                      .InH(8'hAA),
-                      .InG(8'hBB),
-                      .InF(8'h01),
-                       .InE(8'h23),
-                      .InD(8'h45),
-                      .InC(8'h67),
-                      .InB(8'h89),
-                     .InA(8'h00),
-                          
+                  /*      //LCD Display values
+                      .InH(8'hAA), //clock_sw_div[31:28]
+                      .InG(8'hBB),// clock_sw_div[27:24]
+                      .InF(8'h01), // clock_sw_div[23:20]
+                       .InE(8'h23),// clock_sw_div[19:16]
+                      .InD(8'h45),// clock_sw_div[15:12]
+                      .InC(8'h67), //clock_sw_div[11:8]
+                      .InB(8'h89), // clock_sw_div [7:4]
+                     .InA(8'h00),//clock_sw_div[3:0]
+					 */
+                        .InH(clock_sw_div[31:28]), //
+                      .InG(clock_sw_div[27:24]),// 
+                      .InF(clock_sw_div[23:20]), // 
+                       .InE(clock_sw_div[19:16]),// 
+                      .InD(clock_sw_div[15:12]),// 
+                      .InC(clock_sw_div[11:8]), //
+                      .InB(clock_sw_div [7:4]), // 
+                     .InA(clock_sw_div[3:0]),//
+						  
+						  
+						  
                      //LCD display information signals
                          .InfoH({character_I,character_T}),
                           .InfoG({character_space,character_I}),
@@ -401,8 +457,8 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                           .scope_channelB(scope_channelB), //don't touch
                           
                   //scope information generation
-                          .ScopeInfoA(disp_note),
-                          .ScopeInfoB(disp_data),
+                          .ScopeInfoA(disp_note), // used for Do Re Mi .... Si display on the wave
+                          .ScopeInfoB(disp_data), 
                           
                  //enable_scope is used to freeze the scope just before capturing 
                  //the waveform for display (otherwise the sampling would be unreliable)
