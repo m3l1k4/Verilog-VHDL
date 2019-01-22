@@ -4,7 +4,7 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 	 input Reset;
     output reg outclk;
 	 output outclk_Not;
-	 input[31:0] div_clk_count;
+	 input[31:0] div_clk_count; // gets values from the instantiation in basic_organ_solution
 	/*  // original 
 	 var_clk_div32 Div_Clk(.inclk(inclk),.outclk(outclk),
 	 .outclk_not(outclk_Not),.clk_count(div_clk_count),.Reset(Reset));
@@ -12,6 +12,7 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 
 	// outclk_not , is not used, as in left open without a signal going anywhere in the basic_organ_solution 
 	 // reset is hard coded signal with 1 in original basic_org_sol 
+	 // the reset stage is hidden here, but used in the test bench 
 	// /*
 	 logic [31:0] count; // clock counter
 
@@ -27,7 +28,7 @@ module Generate_Arbitrary_Divided_Clk32(inclk,outclk,outclk_Not,div_clk_count,Re
 	 //else begin 
 		if ( count >= div_clk_count) begin
 		count <=0;
-		outclk <= ~outclk;  // alternating between 0 and 1 each clock count cycle 
+		outclk <= ~outclk;  // alternating between 0 and 1  
 				  end
 				
 		else begin

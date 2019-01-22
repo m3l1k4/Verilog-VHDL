@@ -1,5 +1,5 @@
 module scope_capture #(parameter scope_bits = 16)
-(input wire clk, input wire the_signal, input wire capture_enable, output reg[scope_bits-1:0] captured_data,
+(input wire clk, input wire [2:0] the_signal, input wire capture_enable, output reg[scope_bits-1:0] captured_data,
 input wire  reset);
 
 
@@ -17,7 +17,7 @@ begin
 		begin
 				if (synced_capture_enable)
 				begin
-						captured_data <= {captured_data[scope_bits-2:0],the_signal};
+						captured_data <= {captured_data[scope_bits-4:0],the_signal};
 				end
 		end
 end

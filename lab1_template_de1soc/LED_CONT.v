@@ -7,15 +7,19 @@ input clk; // clock_50
 input reset;
 output [7:0] LEDS;
 
-logic [31:0] count;
+logic [31:0] count; // time counter 
 
+// state machine state names 
 enum { start,LEDS0, LEDS1,LEDS2,LEDS3,LEDS4,LEDS5,LEDS6,LEDS7,LEDS8} state;
 
+// state machine that counts to 5M to mimic 1 second before changing lights
+// starts with SW[0] same as audio 
 
-always @(posedge clk) begin
+
+always @(posedge clk) begin // asynchronous reset 
 
 
-if (reset ==0) begin  
+if (reset ==0) begin   // reset is connected to Sw0
 LEDS [7:0] <= 0 ;
 count<= 0;
 state<= LEDS0;
@@ -38,7 +42,7 @@ end
 
 LEDS0: begin
 
-	if ( count >= 50000000 ) begin
+	if ( count >= 50000000 ) begin  
 		count <= 0;
 		LEDS[0]<= 0;
 		state<=LEDS1;  end
