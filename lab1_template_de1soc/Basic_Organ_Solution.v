@@ -428,16 +428,18 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                       .InB(8'h89), // clock_sw_div [7:4]
                      .InA(8'h00),//clock_sw_div[3:0]
 					 */
-                        .InH(clock_sw_div[31:28]), //
-                      .InG(clock_sw_div[27:24]),// 
-                      .InF(clock_sw_div[23:20]), // 
-                       .InE(clock_sw_div[19:16]),// 
-                      .InD(clock_sw_div[15:12]),// 
-                      .InC(clock_sw_div[11:8]), //
-                      .InB(clock_sw_div [7:4]), // 
-                     .InA(clock_sw_div[3:0]),//
-						  
-						  
+               
+						 
+					 .InH(8'h00), //
+                      .InG(8'h00),// 
+                      .InF(8'h00), //  
+                       .InE(8'h00),// 
+                      .InD(clock_sw_div[31:24]),// 
+                      .InC(clock_sw_div[23:16]), // 
+                      .InB(clock_sw_div [15:8]), //
+                     .InA(clock_sw_div[7:0]),//
+					
+						  						 
 						  
                      //LCD display information signals
                          .InfoH({character_I,character_T}),
