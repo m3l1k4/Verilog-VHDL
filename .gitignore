@@ -450,3 +450,8 @@ lab1_template_de1soc/work/_info
 lab1_template_de1soc/TestBench/work/_vmake
 lab1_template_de1soc/work/_vmake
 *.wlf
+lab1_template_de1soc/TestBench/work/_info
+*.mpf
+*.mti
+*.qpg
+*.qarlog
