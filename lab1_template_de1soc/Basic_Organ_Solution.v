@@ -489,7 +489,7 @@ Gen_1KHz_clk
 
 wire speed_up_raw;
 wire speed_down_raw;
-
+ 
 doublesync 
 key0_doublsync
 (.indata(!KEY[0]),
