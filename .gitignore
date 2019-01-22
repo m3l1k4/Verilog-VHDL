@@ -455,3 +455,13 @@ lab1_template_de1soc/TestBench/work/_info
 *.mti
 *.qpg
 *.qarlog
+*.rdb
+*.nvd
+*.sci
+*.tmw_info
+*.json
+*.dpi
+*.hb_info
+*.sig
+HW1/Q7/incremental_db/README
+*.txt
