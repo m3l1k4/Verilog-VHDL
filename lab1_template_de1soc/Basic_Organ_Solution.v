@@ -245,7 +245,7 @@ logic [31:0] Fa = {character_F,character_lowercase_a} ;
 logic [31:0] So = {character_S,character_lowercase_o} ;
 logic [31:0] La = {character_L,character_lowercase_a} ;
 logic [31:0] Si = {character_S,character_lowercase_i} ;
-
+logic [31:0] Do2 = {character_D,character_lowercase_o, character_2} ;
 
 logic [31:0] disp_note; 
 // for do re mi fa so la si do 
@@ -327,7 +327,7 @@ else if (SW[3:1] == 3'b101) begin
 	
 else if (SW[3:1] == 3'b111) begin
 	clock_sw_div = 32'h5D5D; //1046Hz
-	disp_note = Do;
+	disp_note = Do2;
 	disp_data = Do2_dat;
 	
 							end
