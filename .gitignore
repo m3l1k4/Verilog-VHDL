@@ -467,3 +467,4 @@ HW1/Q7/incremental_db/README
 *.txt
 HW1/Q7/work/_info
 HW1/Q7/work/_vmake
+*.db_info
