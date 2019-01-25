@@ -1,0 +1,104 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Melika/Documents/UBC/year 4/term 2/CPEN411/hex
+vclk32_tb
+Z0 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+!s110 1548187939
+!i10b 1
+!s100 7A[8KIIULBEmUFjAi5U0V3
+IVo30oH5_1R]XiSZCP4_>W3
+Z1 V`JN@9S9cnhjKRR_L]QIcM3
+!s105 clk32_tb_sv_unit
+S1
+Z2 dC:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench
+w1548187932
+8C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/clk32_tb.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/clk32_tb.sv
+L0 2
+Z3 OV;L;10.3c;59
+r1
+!s85 0
+31
+!s108 1548187939.821000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/clk32_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/clk32_tb.sv|
+!i113 1
+Z4 o-work work -sv
+vGenerate_Arbitrary_Divided_Clk32
+R0
+Z5 !s110 1548187940
+!i10b 1
+!s100 o_O_TlP`fP7i6?G9o6j342
+I@`M_gcIUf055FTza<0_ZM3
+R1
+!s105 Generate_Arbitrary_Divided_Clk32_sv_unit
+S1
+R2
+w1548113772
+8C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/Generate_Arbitrary_Divided_Clk32.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/Generate_Arbitrary_Divided_Clk32.sv
+L0 2
+R3
+r1
+!s85 0
+31
+!s108 1548187939.963000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/Generate_Arbitrary_Divided_Clk32.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/Generate_Arbitrary_Divided_Clk32.sv|
+!i113 1
+R4
+n@generate_@arbitrary_@divided_@clk32
+vLED_CONT
+R0
+R5
+!i10b 1
+!s100 _G2eZg1BQ`PfIkV9>V`;=0
+Ieg;0kzlezWaX;Pka44VZf0
+R1
+!s105 LED_CONT_sv_unit
+S1
+R2
+w1548114960
+8C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LED_CONT.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LED_CONT.sv
+L0 3
+R3
+r1
+!s85 0
+31
+!s108 1548187940.241000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LED_CONT.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LED_CONT.sv|
+!i113 1
+R4
+n@l@e@d_@c@o@n@t
+vled_tb
+R0
+R5
+!i10b 1
+!s100 RVz>CZa9YY=R=IiL7]D@H1
+IE1XHPbd`8Ej6SoBOgFV@S2
+R1
+!s105 LEDtb_sv_unit
+S1
+R2
+w1548114285
+8C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LEDtb.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LEDtb.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1548187940.462000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LEDtb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/lab1_template_de1soc/TestBench/LEDtb.sv|
+!i113 1
+R4
