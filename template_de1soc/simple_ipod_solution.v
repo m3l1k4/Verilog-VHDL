@@ -234,6 +234,7 @@ wire    [31:0]  flash_mem_readdata;
 wire            flash_mem_readdatavalid;
 wire    [3:0]   flash_mem_byteenable;
 
+assign flash_mem_byteenable = 4'b1111;
 
 flash flash_inst (
     .clk_clk                 (CLK_50M),
@@ -243,20 +244,20 @@ flash flash_inst (
     .flash_mem_waitrequest   (flash_mem_waitrequest),
     .flash_mem_read          (flash_mem_read),
     .flash_mem_address       (flash_mem_address),
-    .flash_mem_writedata     (),
+    .flash_mem_writedata     (32'b0),
     .flash_mem_readdata      (flash_mem_readdata),
     .flash_mem_readdatavalid (flash_mem_readdatavalid),
     .flash_mem_byteenable    (flash_mem_byteenable)
 );
             
 
-assign Sample_Clk_Signal = Clock_1KHz;
+//assign Sample_Clk_Signal = Clock_1KHz;
 
 //Audio Generation Signal
 //Note that the audio needs signed data - so convert 1 bit to 8 bits signed
-wire [7:0] audio_data = {~Sample_Clk_Signal,{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
+//wire [15:0] audio_data = {~Sample_Clk_Signal,{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
 
-
+wire [15:0] audio_data = // insert signal from state machine here
 
 //======================================================================================
 // 
