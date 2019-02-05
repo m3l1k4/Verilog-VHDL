@@ -491,3 +491,5 @@ template_de1soc/db/lcd_scope_auto_stripped.stp
 template_de1soc/edge detector/work/_info
 template_de1soc/StmTest/work/_info
 template_de1soc/StmTest/work/_vmake
+template_de1soc/simple_ipod_solution.pin
+template_de1soc/db/simple_ipod_solution_tmp_qic_import/qic_export_file_list
