@@ -223,6 +223,8 @@ wire Sample_Clk_Signal;
 // Insert your code for Lab2 here!
 wire clock_22KHz;
 wire out_sync;
+wire [15:0] data_from_sm;
+wire [15:0] data_2_aud;
 
 Generate_Arbitrary_Divided_Clk32 
 Gen_22KHz_clk
@@ -240,15 +242,18 @@ edge_detect signal_sync( .async_sig(clock_22KHz), // slow clock
 		.VCC(1),
 		.GND(0));
 		
-read_SM read_audio(.clk(CLOCK_50), .rst(), 
+read_SM read_audio_data(.clk(CLOCK_50), .rst(),  // don't forget to assign reset signal 
 				   .waitrequest(flash_mem_waitrequest),
 				   .read(flash_mem_read), 
 				   .readdata(flash_mem_readdata), 
 				   .readvalid(flash_mem_readdatavalid), 
-				   .address(flash_mem_address) ,passdata());
+				   .address(flash_mem_address) ,passdata(data_from_sm));
 	
 
 
+pass_to_audio give_data(.clock22(clock_22KHz), .rstn(), .synced_sig(out_sync), 
+				.getdata(data_from_sm), .pass_data_audio(data_2_aud)); 
+	
 
 
 //
@@ -285,9 +290,9 @@ flash flash_inst (
 
 //Audio Generation Signal
 //Note that the audio needs signed data - so convert 1 bit to 8 bits signed
-//wire [15:0] audio_data = {~Sample_Clk_Signal,{7{Sample_Clk_Signal}}}; //generate signed sample audio signal
+//wire [15:0] audio_data = {~Sample_Clk_Signal,{7{Sample_Clk_Signal}}}; //generate signed sample audio signal original code 
 
-wire [15:0] audio_data = // insert signal from state machine here
+wire [15:0] audio_data = data_2_aud; // insert signal from state machine here
 
 //======================================================================================
 // 

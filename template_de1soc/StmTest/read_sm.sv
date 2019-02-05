@@ -3,7 +3,7 @@ readvalid, address,passdata);
 
 input logic clk,rst, waitrequest, readvalid;
 input logic [31:0] readdata;
-output logic [31:0] passdata;
+output logic [15:0] passdata;
 output logic [22:0] address; // can ignore bits 23 to 31
 output logic read ;
 
