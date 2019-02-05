@@ -15,18 +15,18 @@ HW1Q7 HW1Q7TB( .async_sig(async_sig_tb), .outclk(outclk_tb),
 initial forever begin
 
 outclk_tb = 0;
-#7;
+#2;
 outclk_tb = 1;
-#7;
+#2;
 
 end
 	
 initial forever begin
 
 async_sig_tb = 0;
-#1;
+#7;
 async_sig_tb = 1;
-#1;
+#7;
 	
 end
 

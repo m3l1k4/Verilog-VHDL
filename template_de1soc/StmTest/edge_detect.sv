@@ -1,5 +1,5 @@
-module HW1Q7( input logic async_sig, // slowclock
-		input logic outclk, // fast clock
+module edge_detect( input logic async_sig, // slow clock
+		input logic outclk, //fast clock
 		output logic out_sync_sig,
 		input logic VCC,
 		input logic GND);

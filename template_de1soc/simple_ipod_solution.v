@@ -221,8 +221,38 @@ wire Sample_Clk_Signal;
 //=======================================================================================================================
 //
 // Insert your code for Lab2 here!
+wire clock_22KHz;
+wire out_sync;
+
+Generate_Arbitrary_Divided_Clk32 
+Gen_22KHz_clk
+(
+.inclk(CLOCK_50),
+.outclk(clock_22KHz),
+.outclk_Not(),
+.div_clk_count(16'h470), //for 22khz clock
+.Reset(1'h1)); 
+
+
+edge_detect signal_sync( .async_sig(clock_22KHz), // slow clock
+		.outclk(CLOCK_50), //fast clock
+		.out_sync_sig(out_sync),
+		.VCC(1),
+		.GND(0));
+		
+read_SM read_audio(.clk(CLOCK_50), .rst(), 
+				   .waitrequest(flash_mem_waitrequest),
+				   .read(flash_mem_read), 
+				   .readdata(flash_mem_readdata), 
+				   .readvalid(flash_mem_readdatavalid), 
+				   .address(flash_mem_address) ,passdata());
+	
+
+
+
+
 //
-//
+//=======================================================================================================================
 
 
 
