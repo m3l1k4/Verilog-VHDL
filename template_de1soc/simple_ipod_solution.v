@@ -223,8 +223,12 @@ wire Sample_Clk_Signal;
 // Insert your code for Lab2 here!
 wire clock_22KHz;
 wire out_sync;
+wire confirm_flag;
 wire [15:0] data_from_sm;
 wire [15:0] data_2_aud;
+logic reset_sm;
+
+assign reset_sm =SW[0];
 
 Generate_Arbitrary_Divided_Clk32 
 Gen_22KHz_clk
@@ -242,17 +246,22 @@ edge_detect signal_sync( .async_sig(clock_22KHz), // slow clock
 		.VCC(1),
 		.GND(0));
 		
-read_SM read_audio_data(.clk(CLOCK_50), .rst(),  // don't forget to assign reset signal 
+read_SM read_audio_data(.clk(CLOCK_50), .rst(SW[0]),  // don't forget to assign reset signal 
 				   .waitrequest(flash_mem_waitrequest),
 				   .read(flash_mem_read), 
 				   .readdata(flash_mem_readdata), 
 				   .readvalid(flash_mem_readdatavalid), 
-				   .address(flash_mem_address) ,passdata(data_from_sm));
+				   .address(flash_mem_address),
+				   .passdata(data_from_sm),
+				   .confirm_reciv(confirm_flag));
 	
 
 
-pass_to_audio give_data(.clock22(clock_22KHz), .rstn(), .synced_sig(out_sync), 
-				.getdata(data_from_sm), .pass_data_audio(data_2_aud)); 
+pass_to_audio give_data(.clock50(CLOCK_50), .rstn(SW[0]), 
+						.synced_sig(out_sync), 
+						.getdata(data_from_sm), 
+						.pass_data_audio(data_2_aud),
+						.confirm_pass(confirm_flag)); 
 	
 
 
@@ -462,7 +471,7 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                           .scope_channelB(scope_channelB), //don't touch
                           
                   //scope information generation
-                          .ScopeInfoA({character_1,character_K,character_H,character_lowercase_z}),
+                          .ScopeInfoA(flash_mem_address),
                           .ScopeInfoB({character_S,character_W,character_1,character_space}),
                           
                  //enable_scope is used to freeze the scope just before capturing 
@@ -683,8 +692,8 @@ audio_control(
   .oAUD_DACDAT(AUD_DACDAT),                 //  Audio CODEC DAC Data
   .AUD_BCLK(AUD_BCLK),                      //  Audio CODEC Bit-Stream Clock
   .oAUD_XCK(AUD_XCK),                       //  Audio CODEC Chip Clock
-  .audio_outL({actual_audio_data_left,8'b1}), 
-  .audio_outR({actual_audio_data_right,8'b1}),
+  .audio_outL(actual_audio_data_left), 
+  .audio_outR(actual_audio_data_right), // removed concatenation Feb 5, 2019 
   .audio_right_clock(audio_right_clock), 
   .audio_left_clock(audio_left_clock)
 );

@@ -1,7 +1,7 @@
 module read_SM(clk, rst, waitrequest, read, readdata, 
-readvalid, address,passdata);
+readvalid, address,passdata, confirm_reciv);
 
-input logic clk,rst, waitrequest, readvalid;
+input logic clk,rst, waitrequest, readvalid, confirm_reciv;
 input logic [31:0] readdata;
 output logic [15:0] passdata;
 output logic [22:0] address; // can ignore bits 23 to 31
@@ -11,9 +11,11 @@ reg [15:0] data_upper;
 reg [15:0] data_lower;
 logic [22:0] addr_inc;  // used to increment address
 
-enum {assert_read_addr,
+enum {init_state,
+	  assert_read_addr,
 	  check_data_valid,
 	  pass_data,
+	  confirm_recieved,
 	  inc_address} state;
 
 //you will read 32-bit data from each address, for even addresses the data is in bits 15 to 0, 
@@ -21,15 +23,15 @@ enum {assert_read_addr,
  //is that the other bits will not be zero but will be the sample either before or after the current address
 
 //fms is on clock 50M
-always @(posedge clk, negedge rst) begin
+always @(posedge clk) begin
 
-if (rst)begin
+if (~rst)begin
 
 address<=0;
 read<= 0;
 addr_inc<=0;
 
-state<= assert_read_addr;
+state<= init_state;
 
 end
 
@@ -37,10 +39,20 @@ end
 else begin
 
 	case(state)
+	
+	
+		init_state: begin  //need this because waitrequest prior to read assertion is undefined 
+		    
+			addr_inc<=0;
+			address<= addr_inc;  // pass address address location 
+			read<= 1;  // assert read
+			state<= assert_read_addr;
+		
+		end
 		
 		assert_read_addr: begin
-		
-			if ( waitrequest == 0 ) begin
+		 
+			if ( waitrequest == 0 ) begin // wait request is undefined until read is asserted
 			
 			address<= addr_inc;  // pass address address location 
 			read<= 1;  // assert read
@@ -49,7 +61,7 @@ else begin
 			end
 			
 			
-			else if (waitrequest ==1) begin
+			else  begin
 			
 			state<= assert_read_addr;
 			
@@ -85,7 +97,7 @@ else begin
 			if ( addr_inc[0] == 1)  begin// address is odd 
 		
 				passdata<= data_upper; // odd addresses in bits 31 to 16.
-				state<= inc_address;
+				state<= confirm_recieved;
 				
 		
 			end 
@@ -93,11 +105,25 @@ else begin
 			else if ( addr_inc[0] == 0 ) begin // address is even 
 		
 				passdata<= data_lower;  //data is in bits 15 to 0, 
-				state<= inc_address;
+				state<= confirm_recieved;
 		
 			end
 		
 		end 
+		
+		confirm_recieved: begin
+		
+		if ( confirm_reciv == 1)  // recieved on the audio end
+		state<= inc_address;
+		
+		else
+		
+		state<=confirm_recieved;
+		
+		
+		
+		
+		end
 		
 		inc_address: begin  // increment address 
 		
@@ -112,14 +138,15 @@ else begin
 				addr_inc<= addr_inc + 1;
 				state<= assert_read_addr;
 				end
-		end
+		end // need to check the rising edge of the edge dector output
 
 		
-default: state<= assert_read_addr;	
+default: state<= init_state;	
 		
 	endcase 
 
 end
+
 
 
 
