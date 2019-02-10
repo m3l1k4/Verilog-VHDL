@@ -261,7 +261,8 @@ pass_to_audio give_data(.clock50(CLOCK_50), .rstn(SW[0]),
 						.synced_sig(out_sync), 
 						.getdata(data_from_sm), 
 						.pass_data_audio(data_2_aud),
-						.confirm_pass(confirm_flag)); 
+						.confirm_pass(confirm_flag),
+						.key_control(kbd_scan_code)); 
 	
 
 
