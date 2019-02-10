@@ -236,7 +236,7 @@ Gen_22KHz_clk
 .inclk(CLOCK_50),
 .outclk(clock_22KHz),
 .outclk_Not(),
-.div_clk_count(16'h470), //for 22khz clock
+.div_clk_count(16'h8E1), // 16'h470 for 22khz clock  //16'h8E1 for 11 khz
 .Reset(1'h1)); 
 
 
