@@ -224,11 +224,14 @@ wire Sample_Clk_Signal;
 wire clock_22KHz;
 wire out_sync;
 wire confirm_flag;
+wire direc_flag;
 wire [15:0] data_from_sm;
 wire [15:0] data_2_aud;
-logic reset_sm;
+//logic reset_sm;
+wire reset_sm;
+wire [7:0] keyboard_data;
 
-assign reset_sm =SW[0];
+//assign reset_sm =SW[0];
 
 Generate_Arbitrary_Divided_Clk32 
 Gen_22KHz_clk
@@ -253,7 +256,8 @@ read_SM read_audio_data(.clk(CLOCK_50), .rst(SW[0]),  // don't forget to assign 
 				   .readvalid(flash_mem_readdatavalid), 
 				   .address(flash_mem_address),
 				   .passdata(data_from_sm),
-				   .confirm_reciv(confirm_flag));
+				   .confirm_reciv(confirm_flag),
+				   .direction_flag(direc_flag));
 	
 
 
@@ -262,9 +266,21 @@ pass_to_audio give_data(.clock50(CLOCK_50), .rstn(SW[0]),
 						.getdata(data_from_sm), 
 						.pass_data_audio(data_2_aud),
 						.confirm_pass(confirm_flag),
-						.key_control(kbd_scan_code)); 
+						.key_control(keyboard_data)); 
 	
+/*	
+just_direction (.clk(CLOCK_50), 
+				.rst(SW[0]), 
+				.dirc_flag(direc_flag),
+				.dirc(SW[5]));	
+	*/
 
+key_moderator check_keys(.keyboard_in(kbd_scan_code), 
+						.clk(CLOCK_50), 
+						.key_out(keyboard_data), 
+						.reset(SW[0]),
+						.forward_backward(direc_flag)); 
+	
 
 //
 //=======================================================================================================================

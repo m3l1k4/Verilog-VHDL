@@ -1,6 +1,7 @@
 module read_SM(clk, rst, waitrequest, read, readdata, 
-readvalid, address,passdata, confirm_reciv);
+readvalid, address,passdata, confirm_reciv, direction_flag);
 
+input direction_flag;
 input logic clk,rst, waitrequest, readvalid, confirm_reciv;
 input logic [31:0] readdata;
 output logic [15:0] passdata;
@@ -23,9 +24,9 @@ enum {init_state,
  //is that the other bits will not be zero but will be the sample either before or after the current address
 
 //fms is on clock 50M
-always @(posedge clk) begin
+always_ff @(posedge clk) begin
 
-if (~rst)begin
+if (rst)begin
 
 address<=0;
 read<= 0;
@@ -43,10 +44,28 @@ else begin
 	
 		init_state: begin  //need this because waitrequest prior to read assertion is undefined 
 		    
+		if (direction_flag == 1) begin	 // play forward
+			
 			addr_inc<=0;
 			address<= addr_inc;  // pass address address location 
 			read<= 1;  // assert read
 			state<= assert_read_addr;
+		
+		end
+		
+		else if ( direction_flag == 0 )  begin  // play backward
+		
+			addr_inc<=23'h7FFFF;
+			address<= 23'h7FFFF;  // pass address address location 
+			read<= 1;  // assert read
+			state<= assert_read_addr;
+		
+		
+		end
+		
+		else
+		state<= init_state;
+		
 		
 		end
 		
@@ -127,6 +146,10 @@ else begin
 		
 		inc_address: begin  // increment address 
 		
+		
+		if ( direction_flag == 1) begin   // play forward
+		 
+		
 			if (addr_inc>= 23'h7FFFF) begin
 		
 				addr_inc<=0;
@@ -138,6 +161,29 @@ else begin
 				addr_inc<= addr_inc + 1;
 				state<= assert_read_addr;
 				end
+				
+				
+		end
+		
+		
+		else if (direction_flag == 0)  begin   // play backward
+		
+		if (addr_inc == 1) begin
+		
+				addr_inc<=23'h7FFFF;
+				state<= assert_read_addr;
+		
+			end
+		
+			else begin
+				addr_inc<= addr_inc - 1;
+				state<= assert_read_addr;
+				end
+		
+		
+		end
+		
+		
 		end // need to check the rising edge of the edge dector output
 
 		

@@ -23,9 +23,9 @@ output logic confirm_pass;
 enum { check_sync_sig, start_passing} goto;
 		
 
-always@(posedge clock50) begin // don't need to read on clock22 , edge deterctor is already doing the work, all we care about the is risigning edge of the ouput signla needs to be checked on each read
+always_ff@(posedge clock50) begin // don't need to read on clock22 , edge deterctor is already doing the work, all we care about the is risigning edge of the ouput signla needs to be checked on each read
 
-if ( ~rstn ) begin
+if ( rstn ) begin
 
 goto<= check_sync_sig;
 
