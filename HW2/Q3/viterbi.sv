@@ -26,7 +26,7 @@ output vit1_cs;
 output vit2_cs;
 output[2:0] out_addr;
 
-inout[7:0] vit_data;
+output reg[7:0] vit_data; //inout
 output out_RD,out_WR,finish;
 output[7:0] return_data;
 wire[7:0] return_data;
@@ -47,16 +47,16 @@ parameter wait_read = 11'b0110_0101001;
 parameter strobe_read = 11'b0111_0111001;
 parameter finished = 11'b1000_0101100;
 
-assign out_RD = ~state[0];
-assign out_WR = ~state[1];
-assign finish = state[2];
-assign vit_cs_allow = state[3];
-assign strobe_read_reg = state[4];
-assign allow_data_output = state[5];
-assign vit1_cs = !((vit_num == vit1_code) && (vit_cs_allow));
-assign vit2_cs = !((vit_num == vit2_code) && (vit_cs_allow));
+assign out_RD = ~state[0];//
+assign out_WR = ~state[1];//
+assign finish = state[2];//
+assign vit_cs_allow = state[3]; //
+assign strobe_read_reg = state[4]; //
+assign allow_data_output = state[5]; //
+assign vit1_cs = !((vit_num == vit1_code) && (vit_cs_allow)); //
+assign vit2_cs = !((vit_num == vit2_code) && (vit_cs_allow));//
 assign out_addr = in_addr;
-assign vit_data = (allow_data_output && is_write) ? in_data[7:0] : 8'bz;
+assign vit_data = (allow_data_output && is_write) ? in_data[7:0] : 8'bz; //
 assign return_data = read_reg;
 
 always_ff @(posedge clk or negedge reset_all)
