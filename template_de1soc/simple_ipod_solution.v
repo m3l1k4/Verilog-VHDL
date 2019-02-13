@@ -230,8 +230,18 @@ wire [15:0] data_2_aud;
 //logic reset_sm;
 wire reset_sm;
 wire [7:0] keyboard_data;
+wire [31:0] song_speed;
 
 //assign reset_sm =SW[0];
+
+						
+speed_control songspeed(.clk(clock_22KHz),
+						.rst(SW[0]),
+						.speed_up(speed_up_event),
+						.speed_down(speed_down_event),
+						.speed_norm(~KEY[2]),
+						.speed_freq(song_speed));
+	
 
 Generate_Arbitrary_Divided_Clk32 
 Gen_22KHz_clk
@@ -239,7 +249,7 @@ Gen_22KHz_clk
 .inclk(CLOCK_50),
 .outclk(clock_22KHz),
 .outclk_Not(),
-.div_clk_count(16'h8E1), // 16'h470 for 22khz clock  //16'h8E1 for 11 khz
+.div_clk_count(song_speed), // 16'h470 for 22khz clock  //16'h8E1 for 11 khz
 .Reset(1'h1)); 
 
 
@@ -267,21 +277,22 @@ pass_to_audio give_data(.clock50(CLOCK_50), .rstn(SW[0]),
 						.pass_data_audio(data_2_aud),
 						.confirm_pass(confirm_flag),
 						.key_control(keyboard_data)); 
-	
-/*	
-just_direction (.clk(CLOCK_50), 
-				.rst(SW[0]), 
-				.dirc_flag(direc_flag),
-				.dirc(SW[5]));	
-	*/
+						
 
+	
 key_moderator check_keys(.keyboard_in(kbd_scan_code), 
 						.clk(CLOCK_50), 
 						.key_out(keyboard_data), 
 						.reset(SW[0]),
 						.forward_backward(direc_flag)); 
 	
-
+wire [7:0] up_check,down_check;
+	
+	check_speed_sig upup(.up_down(speed_up_event), 
+						.up_down_ch(up_check));
+						
+	check_speed_sig downdown(.up_down(speed_down_event), 
+						.up_down_ch(down_check));
 //
 //=======================================================================================================================
 
@@ -489,7 +500,7 @@ LCD_Scope_Encapsulated_pacoblaze_wrapper LCD_LED_scope(
                           
                   //scope information generation
                           .ScopeInfoA(flash_mem_address),
-                          .ScopeInfoB({character_S,character_W,character_1,character_space}),
+                          .ScopeInfoB({up_check,down_check}),
                           
                  //enable_scope is used to freeze the scope just before capturing 
                  //the waveform for display (otherwise the sampling would be unreliable)
