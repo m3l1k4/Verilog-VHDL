@@ -235,10 +235,10 @@ wire [31:0] song_speed;
 //assign reset_sm =SW[0];
 
 						
-speed_control songspeed(.clk(clock_22KHz),
+speed_control songspeed(.clk(CLOCK_50),
 						.rst(SW[0]),
-						.speed_up(speed_up_event),
-						.speed_down(speed_down_event),
+						.speed_up(speed_up_event), // key0
+						.speed_down(speed_down_event), // key1
 						.speed_norm(~KEY[2]),
 						.speed_freq(song_speed));
 	
