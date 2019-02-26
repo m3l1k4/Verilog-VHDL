@@ -34,19 +34,16 @@ assign output_arguments = ( (select_b_output_parameters) ? input_argumnets_b : i
 assign received_data_a = ( (register_data_a_enable)? in_received_data: 0 ) ;
 assign received_data_b = ( (register_data_b_enable)? in_received_data: 0 ) ;
 
-
-
-
-parameter [ 11:0]      check_start_a = 12'b0000_00000000,  // state_output
-				 give_start_a= 12'b0001_00000110,
-				 wait_for_finish_a= 12'b0010_00000000,
-				 register_data_a= 12'b0011_01000000,
-				 give_finish_a= 12'b0100_00010000,
-				 check_start_b=12'b0101_00000001,
-				 give_start_b= 12'b0110_00001011,
-				 wait_for_finish_b= 12'b0111_00000001,
-				 register_data_b= 12'b1000_10000001,
-				 give_finish_b=12'b0001_00100001;
+parameter [ 11:0]       check_start_a = 12'b0000_00000000, // 0  // state_output
+						give_start_a= 12'b0001_00000110, //262
+						wait_for_finish_a= 12'b0010_00000000, //512
+						register_data_a= 12'b0011_01000000,// 832
+						give_finish_a= 12'b0100_00010000, //1040
+						check_start_b=12'b0101_00000001,//1281
+						give_start_b= 12'b0110_00001011,//1547
+						wait_for_finish_b= 12'b0111_00000001,//1793
+						register_data_b= 12'b1000_10000001, //2177
+						give_finish_b=12'b0001_00100001; // 289
 				 
 				 
 			//	[0]select_b_output_parameters
@@ -57,12 +54,6 @@ parameter [ 11:0]      check_start_a = 12'b0000_00000000,  // state_output
 			//	[5]finish_b //
 			//	[6]register_data_a_enable
 			//	[7]register_data_b_enable
- 
-	
-	
-/*	 enum {check_start_a, give_start_a, wait_for_finish_a, register_data_a, give_finish_a,
-	  check_start_b, give_start_b, wait_for_finish_b, register_data_b, give_finish_b
-     } current_state; */
 
 
 
@@ -127,167 +118,5 @@ select_b_output_parameters// [0]
  }  = state[7:0];
 
 
-/*
-always@(posedge sm_clk, posedge reset) begin
 
-	if(reset) begin
-					select_b_output_parameters<=0;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-	end
-
-	else begin
-
-	case(current_state)
-	
-	
-		
-	
-		
-		check_start_a: begin
-			
-					select_b_output_parameters<=0;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		end
-		
-		give_start_a:begin
-		
-					select_b_output_parameters<=0;
-					start_target_current_state_machine<=1; //
-					reset_start_request_a<=1; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		
-		end
-		
-		wait_for_finish_a: begin
-		
-					select_b_output_parameters<=0;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		
-		
-		end
-		
-		register_data_a: begin
-		
-					select_b_output_parameters<=0;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=1;
-					register_data_b_enable<=0;	
-		
-		end
-		
-		give_finish_a:begin
-					
-					select_b_output_parameters<=0;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=1; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		
-		
-		end
-		
-		check_start_b: begin
-		
-					select_b_output_parameters<=1;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		end
-		
-		give_start_b:begin
-		
-					select_b_output_parameters<=1;
-					start_target_current_state_machine<=1; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=1; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		end
-		
-		wait_for_finish_b:begin
-		
-					select_b_output_parameters<=1;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		end
-		
-		register_data_b:begin
-		
-					select_b_output_parameters<=1;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=0; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=1;
-		
-		end
-		
-		give_finish_b:begin
-		
-					select_b_output_parameters<=1;
-					start_target_current_state_machine<=0; //
-					reset_start_request_a<=0; //
-					reset_start_request_b<=0; //
-					finish_a<=0; //
-					finish_b<=1; //
-					register_data_a_enable<=0;
-					register_data_b_enable<=0;
-		
-		end
-	
-	
-	
-	endcase
-end
-end
-*/
 endmodule

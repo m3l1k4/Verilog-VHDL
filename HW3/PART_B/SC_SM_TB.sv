@@ -102,7 +102,45 @@ reset_tb = 0;
 target_current_state_machine_finished_tb= 1;
 start_request_a_tb = 0;
 start_request_b_tb = 0;
+#2;
 
+////////////
+reset_tb = 0;  
+target_current_state_machine_finished_tb= 0;
+start_request_a_tb = 0;
+start_request_b_tb = 1;
+#2;
+
+reset_tb = 0;  
+target_current_state_machine_finished_tb= 0;
+start_request_a_tb = 0;
+start_request_b_tb = 1;
+#1;
+
+reset_tb = 0;  
+target_current_state_machine_finished_tb= 0;
+start_request_a_tb = 0;
+start_request_b_tb = 1;
+#1;
+
+reset_tb = 0;  
+target_current_state_machine_finished_tb= 0;
+start_request_a_tb = 0;
+start_request_b_tb = 1;
+#2;
+
+
+reset_tb = 0;  
+target_current_state_machine_finished_tb= 1;
+start_request_a_tb = 0;
+start_request_b_tb = 1;
+#1;
+
+reset_tb = 0;  
+target_current_state_machine_finished_tb= 1;
+start_request_a_tb = 0;
+start_request_b_tb = 0;
+#2;
 
 
 end
