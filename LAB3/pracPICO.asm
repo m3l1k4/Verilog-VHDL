@@ -88,34 +88,15 @@
                     ;
                     ;**************************************************************************************
                     ; Initialise the system
-					
-			
-				main:
-					LOAD s0, 01
-					CALL delay_1s;
-					ENABLE INTERRUPT 
-					;INPUT s1, 
-					
-				 count_loop: CALL check_num
-							
-							JUMP count_loop
-				end_main: 			
-					
-				check_num:
-				
-					INPUT s0,DATA_IN_PORT     		;get status of switches
-					COMPARE s0, 00    			;test to see if switches are 0
-					CALL Z, reset_count
 
-						RETURN 
-						
-				reset_count:  LOAD s0,02
-								RETURN 
-						
-						
-						
-						
+			
+				main:	
 				
+					ENABLE INTERRUPT 	
+					INPUT s0,DATA_IN_PORT
+					
+					JUMP main
+					
 						
 					;**************************************************************************************
                     ; Software delay routines
@@ -182,21 +163,44 @@
                     ;
                     ;
 						
-						
-						
-               ISR: STORE s0, ISR_preserve_s0           ;preserve register
-                    FETCH s0, LED_pattern               ;read current counter value
-                    ADD s0, 01                          ;increment counter
-                    STORE s0, LED_pattern               ;store new counter value
-                    OUTPUT s0, LED_port                 ;display counter value on LEDs
-                    FETCH s0, ISR_preserve_s0           ;restore register
-                    RETURNI ENABLE
-                    ;
-                    ;
+				
+				    ; discard 8 msb for division 
+				
+			    ISR:
+					STORE s1, ISR_preserve_s1  ;lsb        ;preserve register
+					STORE s2, ISR_preserve_s2  ; msb
+					STORE S3, ISR_preserve_s3  ; COUNTER
+					
+					
+					ADD s3, 01   ;read current counter value
+					COMPARE s3, FF   ; 255 
+					JUMP C, keep_adding
+					JUMP Z, display_LEDs
+					
+					
+					keep_adding:
+					ADDCY s1, s0                          ;increment counter
+                    ADDCY s2, s1 
+					FETCH s1, ISR_preserve_s1  
+					FETCH s2, ISR_preserve_s2
+					FETCH s3, ISR_preserve_s3				
+					
+					JUMP to_end
+					
+					
+					display_LEDs:
+					OUTPUT s2, LED_port
+					LOAD s1, 00
+					LOAD s2, 00
+					LOAD s3, 00 
+					
+
+                    to_end: 
                     ;**************************************************************************************
                     ; Interrupt Vector
                     ;**************************************************************************************
                     ;
                     ADDRESS 3FF
                     JUMP ISR
-
+		
+						
