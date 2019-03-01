@@ -55,8 +55,6 @@ parameter [ 11:0]       check_start_a = 12'b0000_00000000, // 0  // state_output
 			//	[6]register_data_a_enable
 			//	[7]register_data_b_enable
 
-
-
 always_ff@(posedge sm_clk, posedge reset) begin
 
 	if(reset)  state<=check_start_a;
@@ -102,8 +100,6 @@ always_comb begin
 
 	endcase
 
-	
-	
 end
 
 assign { 				
