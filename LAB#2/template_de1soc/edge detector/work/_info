@@ -1,0 +1,85 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Melika/Documents/GitHub/CPEN311/HW1/Q7
+vFDC
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1549063287
+!i10b 1
+!s100 O<GBVic5fRJGRYR_G=DSg3
+I4A[JQo9Y:FJJHjT>0?Gmh2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 FDC_SV_unit
+S1
+Z3 dC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector
+w1548181738
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/FDC.SV
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/FDC.SV
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1549063286.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/FDC.SV|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/FDC.SV|
+!i113 1
+Z5 o-work work -sv
+Z6 tCvgOpt 0
+n@f@d@c
+vHW1Q7
+R0
+R1
+!i10b 1
+!s100 <1nld92]APNAZX:=TiQRo0
+I@hCWFICkRm_cL6<YdFS3Z0
+R2
+!s105 HW1Q7_sv_unit
+S1
+R3
+w1548182064
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/HW1Q7.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/HW1Q7.sv
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1549063287.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/HW1Q7.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector/HW1Q7.sv|
+!i113 1
+R5
+R6
+n@h@w1@q7
+vHW1Q7_TB
+R0
+!s110 1549296506
+!i10b 1
+!s100 c8j8RC2_776=28M4eRQMN3
+IbQfMIN@m_X>EX`i`>GzmC3
+R2
+!s105 HW1Q7_TB_sv_unit
+S1
+R3
+w1549296503
+8C:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\edge detector\HW1Q7_TB.sv
+FC:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\edge detector\HW1Q7_TB.sv
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1549296506.000000
+!s107 C:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\edge detector\HW1Q7_TB.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\edge detector\HW1Q7_TB.sv|
+!i113 1
+R5
+R6
+n@h@w1@q7_@t@b

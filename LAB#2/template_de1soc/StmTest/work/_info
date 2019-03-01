@@ -1,0 +1,181 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/edge detector
+vdir_tb
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+!s110 1549854712
+!i10b 1
+!s100 n0Gi@l^2g`8ZoeJYBF23o2
+I?`0o5:3dh<:bM9c;i3VAL0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+!s105 dir_tb_sv_unit
+S1
+Z2 dC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest
+w1549854707
+8C:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\StmTest\dir_tb.sv
+FC:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\StmTest\dir_tb.sv
+L0 1
+Z3 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1549854712.000000
+!s107 C:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\StmTest\dir_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\Melika\Documents\GitHub\CPEN311\template_de1soc\StmTest\dir_tb.sv|
+!i113 1
+Z4 o-work work -sv
+Z5 tCvgOpt 0
+vedge_detect
+R0
+!s110 1549404447
+!i10b 1
+!s100 ]gmVbCI?[=8>O4L[m7GOB3
+I?S_;297Q2Ia;CH48hA`QV0
+R1
+!s105 edge_detect_sv_unit
+S1
+R2
+w1549391060
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/edge_detect.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/edge_detect.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1549404447.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/edge_detect.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/edge_detect.sv|
+!i113 1
+R4
+R5
+vFDC
+R0
+Z6 !s110 1549404448
+!i10b 1
+!s100 O<GBVic5fRJGRYR_G=DSg3
+IAkzEM<Z]c87=Fjzz1ak@32
+R1
+!s105 FDC_SV_unit
+S1
+R2
+w1548181738
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/FDC.SV
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/FDC.SV
+L0 1
+R3
+r1
+!s85 0
+31
+Z7 !s108 1549404448.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/FDC.SV|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/FDC.SV|
+!i113 1
+R4
+R5
+n@f@d@c
+vGenerate_Arbitrary_Divided_Clk32
+R0
+R6
+!i10b 1
+!s100 zaCS]ze79f1m1J9MWPCO50
+ImHC^m^7Gj^eEFOiKanG^X0
+R1
+!s105 Generate_Arbitrary_Divided_Clk32_sv_unit
+S1
+R2
+w1549396396
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/Generate_Arbitrary_Divided_Clk32.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/Generate_Arbitrary_Divided_Clk32.sv
+L0 2
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/Generate_Arbitrary_Divided_Clk32.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/Generate_Arbitrary_Divided_Clk32.sv|
+!i113 1
+R4
+R5
+n@generate_@arbitrary_@divided_@clk32
+vpass_to_audio
+R0
+R6
+!i10b 1
+!s100 84eU2VjXQS7=ol]5[D6>51
+IWVMNZ^Y^gmmkhFADdU4O=3
+R1
+!s105 pass_to_audio_sv_unit
+S1
+R2
+w1549404342
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/pass_to_audio.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/pass_to_audio.sv
+L0 1
+R3
+r1
+!s85 0
+31
+R7
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/pass_to_audio.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/pass_to_audio.sv|
+!i113 1
+R4
+R5
+vread_SM
+R0
+!s110 1549849853
+!i10b 1
+!s100 B2@7<<RVT9N:o1O0Q3CX;1
+IUn4I[QjT?>OJ?Vn[0;N@A1
+R1
+!s105 read_sm_sv_unit
+S1
+R2
+w1549849540
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/read_sm.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/read_sm.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1549849852.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/read_sm.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/read_sm.sv|
+!i113 1
+R4
+R5
+nread_@s@m
+vtest_dir
+R0
+!s110 1549854842
+!i10b 1
+!s100 9X6=h>aH2NGPB;d02]MgT2
+I0DY=Vd_1NJCmoFIR:TYhY2
+R1
+!s105 test_dir_sv_unit
+S1
+R2
+w1549854833
+8C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/test_dir.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/test_dir.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1549854842.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/test_dir.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/template_de1soc/StmTest/test_dir.sv|
+!i113 1
+R4
+R5
