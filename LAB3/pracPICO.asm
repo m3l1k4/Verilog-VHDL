@@ -94,11 +94,32 @@
 				
 					ENABLE INTERRUPT 	
 					INPUT s0,DATA_IN_PORT
+					;ADD s3, 01   ;read current counter value
+					COMPARE s3, FF   ; 255 
+					ADDCY s3, 01
+					CALL Z, display_LEDs
+					CALL delay_1s
+					
+					
 					
 					JUMP main
 					
-						
-					;**************************************************************************************
+					
+					
+					display_LEDs:
+					
+					DISABLE INTERRUPT
+					
+					FETCH s2, ISR_preserve_s2
+					OUTPUT s2, LED_port
+					LOAD s2, 00
+					STORE s2, ISR_preserve_s2
+					
+					ENABLE INTERRUPT
+					
+					RETURN
+					
+		;**************************************************************************************
                     ; Software delay routines
                     ;**************************************************************************************
                     ;
@@ -161,45 +182,35 @@
                     JUMP NZ, wait_1s
                     RETURN
                     ;
-                    ;
-						
+									
+
+
+
+
+				
+
 				
 				    ; discard 8 msb for division 
 				
 			    ISR:
-					STORE s1, ISR_preserve_s1  ;lsb        ;preserve register
-					STORE s2, ISR_preserve_s2  ; msb
+		
+		
 					STORE S3, ISR_preserve_s3  ; COUNTER
-					
-					
-					ADD s3, 01   ;read current counter value
-					COMPARE s3, FF   ; 255 
-					JUMP C, keep_adding
-					JUMP Z, display_LEDs
-					
-					
-					keep_adding:
-					ADDCY s1, s0                          ;increment counter
-                    ADDCY s2, s1 
-					FETCH s1, ISR_preserve_s1  
 					FETCH s2, ISR_preserve_s2
-					FETCH s3, ISR_preserve_s3				
 					
-					JUMP to_end
+					ADD s1, s0                          ;increment counter
+                    ADDCY s2, s1 
 					
-					
-					display_LEDs:
-					OUTPUT s2, LED_port
-					LOAD s1, 00
-					LOAD s2, 00
-					LOAD s3, 00 
-					
+					STORE s2, ISR_preserve_s2
+					FETCH s3, ISR_preserve_s3  ; msb
 
-                    to_end: 
+
+
                     ;**************************************************************************************
                     ; Interrupt Vector
                     ;**************************************************************************************
-                    ;
+                    
+					RETURNI ENABLE
                     ADDRESS 3FF
                     JUMP ISR
 		
