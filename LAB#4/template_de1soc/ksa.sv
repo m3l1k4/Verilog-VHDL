@@ -43,10 +43,10 @@ SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
 
 wire  wren;
 wire [7:0] addr;
-wire [7:0] data;
+wire [7:0] data_to_mem;
 wire [7:0] q;
 
-
+/*
 first_loop first(
 
 .clk(clk),
@@ -57,12 +57,31 @@ first_loop first(
 
 );
 
+*/
+
+second_loop second(
+
+.clk(clk),
+.reset_n(reset_n),
+.address(addr),
+.data(data_to_mem), //output to mem
+.data_read(q), // data from mem
+.wren(wren),  // write enable output 
+. keys(24'b00000000 00000010 01001001),  // secret key 
+
+
+
+
+
+);
+
+
 
 
 s_memory S(
 	.address(addr),
 	.clock(clk),
-	.data(data),
+	.data(data_to_mem),
 	.wren(wren),
 	.q(q));
 

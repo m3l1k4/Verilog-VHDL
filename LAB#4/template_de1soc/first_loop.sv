@@ -4,16 +4,18 @@ input logic clk,
 input logic reset_n,
 output logic [7:0] address,
 output logic [7:0] data,
-output logic wren
+output logic wren,
+output logic done_flag,
+input logic start_flag
 
 );
 
 logic [22:0] addr_inc;  // used to increment address
 
 
-always_ff@(posedge clk, negedge reset_n) begin
+always_ff@(posedge clk) begin
 
-	if ( !reset_n) begin
+	if ( !start_flag) begin
 	
 		address<=0;
 		addr_inc<=0;
@@ -29,12 +31,14 @@ always_ff@(posedge clk, negedge reset_n) begin
 			address<= addr_inc;
 			data<= addr_inc;
 			wren<= 1;
+			done_flag<=0;
 			
 			end 
 			
 		else begin
 
 			wren <=0;
+			done_flag<=1;
 		
 		end
 		
