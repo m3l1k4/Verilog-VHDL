@@ -6,24 +6,37 @@ output logic [7:0] address,
 output logic [7:0] data,
 input logic [7:0] data_read,
 output logic wren,
-input logic [23:0] keys,
+input logic [23:0] sec_key,
 
 input logic start_flag,
 output logic done_flag
 
-
-
-
-
 );
 
 
-enum { read_i, 
-
+enum { read_i,
+wait_i,
+wait_i_2,
+save_i,
+get_key_k,
+set_j,
+read_j,
+wait_j,
+wait_j_2,
+save_j,
+write_i,
+write_j,
+inc_i,
+finish ) state; 
 
 //assign keys[23:10] = 0
 
-logic [22:0] i, j;
+logic [23:0] i, j;
+logic [2:0] k;
+
+logic key_length;
+assign key_length = 3;
+
 reg [7:0] data_i, data_j;
 
 
@@ -34,6 +47,7 @@ always_ff@(posedge clk) begin
 		i<=0;
 		j<=0;
 		wren<= 0;
+		done_flag<=0;
 		state<= read_i;
 	
 	end
@@ -48,8 +62,10 @@ always_ff@(posedge clk) begin
 				
 					address<= i;
 					wren<= 0;
-					state<= wait_i;
+					k<= i % key_length;
 					done_flag<=0;
+					state<= wait_i;
+					
 				
 				end
 				
@@ -66,13 +82,44 @@ always_ff@(posedge clk) begin
 			save_i: begin
 			
 			data_i<= data_read;
-			j<= (j + data_read + keys)
-			done_flag<=0;
+			
+			state<= get_key_k;
+			
+
 			
 			
 			end
 			
-			get_j: begin
+			
+			get_key_k: begin
+			
+				if ( k == 0 ) 
+				secret_key <= sec_key[23:16]
+				
+				
+				else if (k == 1)
+				
+				secret_key <= sec_key[15:8]
+				
+				
+				else if ( k == 2) 
+				secret_key <= sec_key[7:0]
+				
+			state<= set_j;
+			end
+			
+			
+			
+			set_j: begin
+			
+				j<= (j + data_i + secret_key)
+				done_flag<=0;
+				
+				state<= read_j;
+			
+			end
+			
+			read_j: begin
 			
 				address<= j;
 				wren<= 0;
@@ -81,14 +128,14 @@ always_ff@(posedge clk) begin
 			
 			end
 			
-			wait_j: state<= wait_i_2;
-			wait_i_2: state<= save_j;
+			wait_j: state<= wait_j_2;
+			wait_j_2: state<= save_j;
 			
 			save_j: begin
 			
-			data_j<= data_read;
-			
-			state<= write_i;
+				data_j<= data_read;
+				
+				state<= write_i;
 			
 			end
 			
@@ -120,7 +167,8 @@ always_ff@(posedge clk) begin
 				
 				done_flag<=0;
 				i<=i+1;
-			
+				state<= read_i;
+				
 			end
 			
 			

@@ -8,7 +8,7 @@ output logic wren,
 output logic done_flag,
 input logic start_flag
 
-);
+); 
 
 logic [22:0] addr_inc;  // used to increment address
 

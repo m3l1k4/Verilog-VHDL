@@ -46,18 +46,42 @@ wire [7:0] addr;
 wire [7:0] data_to_mem;
 wire [7:0] q;
 
-/*
+logic first_done, second_done, first_start, second_start;
+
+loop_handler LH(
+
+.clok(clk),
+.rst(reset_n),
+
+.first_loop_done(first_done),
+.second_loop_done(second_done),
+
+.first_loop_start(first_start),
+.second_loop_start(second_start)
+
+
+
+);
+
+
+
 first_loop first(
 
 .clk(clk),
 .reset_n(reset_n),
 .address(addr),
 .data(data),
-.wren(wren)
+.wren(wren),
+
+.done_flag(first_done),
+.start_flag(first_start)
+
 
 );
 
-*/
+
+
+
 
 second_loop second(
 
@@ -67,13 +91,11 @@ second_loop second(
 .data(data_to_mem), //output to mem
 .data_read(q), // data from mem
 .wren(wren),  // write enable output 
-. keys(24'b00000000 00000010 01001001),  // secret key 
-
-
-
-
-
+. sec_key(24'b00000000_00000010_01001001),  // secret key
+.start_flag(second_start),
+.done_flag(second_done)
 );
+
 
 
 
