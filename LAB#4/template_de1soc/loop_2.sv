@@ -13,9 +13,9 @@ module loop_2(
 		   
 		   
 		    
-integer i = 0;
-integer j = 0;
-integer n = 0; // for key index
+reg [15:0] i,j;
+reg [2:0] n; 
+
 
 reg [7:0] rdata_i;
 reg [7:0] rdata_j;
@@ -83,7 +83,7 @@ always_ff @(posedge clk, negedge rst_n) begin
 
 
 				rdata_i<= rddata;
-				j <= (j + rddata + secret_key) % 256 ;
+				j <= (j + rddata + secret_key); //% 256 ;
 				state<=read_j;
 
 			end
