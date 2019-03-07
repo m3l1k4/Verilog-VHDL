@@ -6,22 +6,27 @@ input rst,
 input first_loop_done,
 input second_loop_done,
 
-output first_loop_start,
-output second_loop_start
-
+output logic first_loop_start,
+output logic second_loop_start,
+output logic [2:0] light
 
 
 );
 
 
+enum {call_first_loop,
+wait_first_loop_done, 
+wait_second_loop_done, 
+done_done} state;
 
 
-always_ff@(posedge clok, negedge rst) begin
+always_ff@(posedge clok, posedge rst) begin
 
-if (!rst) begin
+if (rst) begin
 
 first_loop_start<=0;
 second_loop_start<= 0;
+light<= 3'b100;
 
 end
 
@@ -34,6 +39,7 @@ case( state)
 		first_loop_start<=1;
 		second_loop_start<= 0;
 		state<= wait_first_loop_done;
+		light<= 3'b001;
 
 	end
 
@@ -45,11 +51,14 @@ case( state)
 			first_loop_start<=1;
 			second_loop_start<= 1;
 			state<= wait_second_loop_done;
+			light<= 3'b010;
 		end
 
-		else 
+		else begin
 			state<= wait_first_loop_done;
-
+			
+			end
+			
 	end
 	
 	
@@ -60,13 +69,14 @@ case( state)
 			first_loop_start<=1;
 			second_loop_start<= 1;
 			state<= done_done;
-		
+		light<= 3'b101;
 		
 		end
 	
-		else
+		else begin
 			state<=wait_second_loop_done;
-	
+			light<= 3'b111;
+	end
 	
 	
 	end

@@ -27,7 +27,7 @@ logic [6:0] ssOut;
 logic [3:0] nIn;
 
 assign clk = CLOCK_50 ;
-assign reset_n = KEY[3];
+assign reset_n = SW[3];
 
 
 
@@ -41,9 +41,9 @@ SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
 
 
 
-wire  wren;
-wire [7:0] addr;
-wire [7:0] data_to_mem;
+wire  wren, wren1, wren2;
+wire [7:0] addr, addr1,addr2;
+wire [7:0] data_to_mem, data_to_mem_1, data_to_mem_2;
 wire [7:0] q;
 
 logic first_done, second_done, first_start, second_start;
@@ -57,21 +57,24 @@ loop_handler LH(
 .second_loop_done(second_done),
 
 .first_loop_start(first_start),
-.second_loop_start(second_start)
-
+.second_loop_start(second_start),
+.light(light_sig)
 
 
 );
 
+wire [2:0] light_sig;
+
+assign LEDR[2:0] = light_sig;
 
 
 first_loop first(
 
 .clk(clk),
 .reset_n(reset_n),
-.address(addr),
-.data(data),
-.wren(wren),
+.address(addr1),
+.data(data_to_mem_1),
+.wren(wren1),
 
 .done_flag(first_done),
 .start_flag(first_start)
@@ -82,22 +85,26 @@ first_loop first(
 
 
 
-
 second_loop second(
 
 .clk(clk),
 .reset_n(reset_n),
-.address(addr),
-.data(data_to_mem), //output to mem
+.address(addr2),
+.data(data_to_mem_2), //input to mem
 .data_read(q), // data from mem
-.wren(wren),  // write enable output 
-. sec_key(24'b00000000_00000010_01001001),  // secret key
+.wren(wren2),  // write enable output 
+.sec_key(24'b00000000_00000010_01001001),  // secret key
 .start_flag(second_start),
 .done_flag(second_done)
-);
+); 
+
+assign wren = wren1; //(first_done? wren2 : wren1) ;
+assign addr = addr1;//( first_done? addr2 : addr1);
+assign data_to_mem = data_to_mem_1; // ( first_done? data_to_mem_2 : data_to_mem_1);
 
 
-
+assign LEDR[4] = ( first_done ? 1 : 0 ) ; 
+assign LEDR[5] = ( second_done? 1: 0 ) ;
 
 
 s_memory S(

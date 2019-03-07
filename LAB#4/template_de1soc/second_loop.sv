@@ -27,7 +27,7 @@ save_j,
 write_i,
 write_j,
 inc_i,
-finish ) state; 
+finish } state; 
 
 //assign keys[23:10] = 0
 
@@ -37,12 +37,12 @@ logic [2:0] k;
 logic key_length;
 assign key_length = 3;
 
-reg [7:0] data_i, data_j;
+reg [7:0] data_i, data_j, secret_key;
 
 
 always_ff@(posedge clk) begin
 
-	if(!start_flag) begin
+	if(start_flag==0) begin
 		
 		i<=0;
 		j<=0;
@@ -94,16 +94,16 @@ always_ff@(posedge clk) begin
 			get_key_k: begin
 			
 				if ( k == 0 ) 
-				secret_key <= sec_key[23:16]
+				secret_key <= sec_key[23:16];
 				
 				
 				else if (k == 1)
 				
-				secret_key <= sec_key[15:8]
+				secret_key <= sec_key[15:8];
 				
 				
 				else if ( k == 2) 
-				secret_key <= sec_key[7:0]
+				secret_key <= sec_key[7:0];
 				
 			state<= set_j;
 			end
@@ -112,7 +112,7 @@ always_ff@(posedge clk) begin
 			
 			set_j: begin
 			
-				j<= (j + data_i + secret_key)
+				j<= (j + data_i + secret_key);
 				done_flag<=0;
 				
 				state<= read_j;
@@ -174,7 +174,7 @@ always_ff@(posedge clk) begin
 			
 			finish: begin
 			
-			state<=finish 
+			state<=finish ;
 			done_flag<= 1;
 			
 			end

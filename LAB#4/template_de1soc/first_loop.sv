@@ -15,11 +15,12 @@ logic [22:0] addr_inc;  // used to increment address
 
 always_ff@(posedge clk) begin
 
-	if ( !start_flag) begin
+	if ( start_flag==0) begin
 	
 		address<=0;
 		addr_inc<=0;
-		wren <=0;	
+		wren <=0;
+		done_flag<=0;		
 		
 	end
 	
