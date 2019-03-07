@@ -93,14 +93,14 @@ second_loop second(
 .data(data_to_mem_2), //input to mem
 .data_read(q), // data from mem
 .wren(wren2),  // write enable output 
-.sec_key(24'b00000000_00000010_01001001),  // secret key
+.sec_key(24'b000000000000001100111100),  // 24'b00000000_00000010_01001001secret key 585
 .start_flag(second_start),
 .done_flag(second_done)
 );  
 
-assign wren = wren1; //(first_done? wren2 : wren1) ;
-assign addr = addr1;//( first_done? addr2 : addr1);
-assign data_to_mem = data_to_mem_1; // ( first_done? data_to_mem_2 : data_to_mem_1);
+assign wren = (first_done? wren2 : wren1) ;
+assign addr = ( first_done? addr2 : addr1);
+assign data_to_mem = ( first_done? data_to_mem_2 : data_to_mem_1); // ( first_done? data_to_mem_2 : data_to_mem_1);
 
 
 assign LEDR[4] = ( first_done ? 1 : 0 ) ; 

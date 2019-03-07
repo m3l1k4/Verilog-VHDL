@@ -117,7 +117,7 @@ always_ff@(posedge clk) begin
 			
 			set_j: begin
 			
-				j<= (j + data_i + secret_key);
+				j<= (j + data_i + secret_key)%256;
 				done_flag<=0;
 				
 				state<= read_j;
