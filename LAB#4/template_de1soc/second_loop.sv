@@ -40,9 +40,9 @@ assign key_length = 3;
 reg [7:0] data_i, data_j, secret_key;
 
 
-always_ff@(posedge clk) begin
+always_ff@(posedge clk, negedge reset_n) begin
 
-	if(start_flag==0) begin
+	if(reset_n==0) begin
 		
 		i<=0;
 		j<=0;
@@ -54,7 +54,7 @@ always_ff@(posedge clk) begin
 	end
 
 	
-	else begin
+	else if ( start_flag == 1)  begin
 		case(state) 
 		
 		/*	idle: begin
@@ -96,7 +96,7 @@ always_ff@(posedge clk) begin
 				secret_key <= sec_key[15:8];
 				
 				
-				else if ( k == 2) 
+				else //if ( k == 2) 
 				secret_key <= sec_key[7:0];
 			
 			

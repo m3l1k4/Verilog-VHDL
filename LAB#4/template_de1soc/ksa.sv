@@ -27,7 +27,7 @@ logic [6:0] ssOut;
 logic [3:0] nIn;
 
 assign clk = CLOCK_50 ;
-assign reset_n = SW[3];
+assign reset_n = KEY[3];
 
 
 
@@ -46,8 +46,8 @@ wire [7:0] addr, addr1,addr2;
 wire [7:0] data_to_mem, data_to_mem_1, data_to_mem_2;
 wire [7:0] q;
 
-logic first_done, second_done, first_start, second_start;
-
+wire first_done, second_done, first_start, second_start;
+/*
 loop_handler LH(
 
 .clok(clk),
@@ -61,7 +61,7 @@ loop_handler LH(
 .light(light_sig)
 
 
-);
+); */
 
 wire [2:0] light_sig;
 
@@ -83,6 +83,12 @@ first_loop first(
 );
 
 
+ muxdata ctrl( .first_done(first_done), .wren1(wren1), .wren2(wren2),
+				.data_in_1(data_to_mem_1), .data_in_2(data_to_mem_2), 
+				 .addrs1(addr1), .addrs2(addr2), 
+				.clk(clk), .data(data_to_mem), .address(addr),.wren(wren) );
+
+
 
 
 second_loop second(
@@ -94,14 +100,14 @@ second_loop second(
 .data_read(q), // data from mem
 .wren(wren2),  // write enable output 
 .sec_key('h00033C),  // 24'b00000000_00000010_01001001secret key 585
-.start_flag(second_start),
+.start_flag(first_done),
 .done_flag(second_done)
 );  
-
+/*
 assign wren = (first_done? wren2 : wren1) ;
 assign addr = ( first_done? addr2 : addr1);
 assign data_to_mem = ( first_done? data_to_mem_2 : data_to_mem_1); // ( first_done? data_to_mem_2 : data_to_mem_1);
-
+*/
 
 assign LEDR[4] = ( first_done ? 1 : 0 ) ; 
 assign LEDR[5] = ( second_done? 1: 0 ) ;

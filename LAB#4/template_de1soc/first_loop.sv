@@ -9,13 +9,12 @@ output logic done_flag,
 input logic start_flag
 
 ); 
+integer addr_inc = 0;  // used to increment address
 
-logic [22:0] addr_inc;  // used to increment address
 
+always_ff@(posedge clk, negedge reset_n) begin
 
-always_ff@(posedge clk) begin
-
-	if ( start_flag==0) begin
+	if ( reset_n==0) begin
 	
 		address<=0;
 		addr_inc<=0;
