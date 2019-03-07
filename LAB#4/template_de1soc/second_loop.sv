@@ -14,7 +14,7 @@ output logic done_flag
 );
 
 
-enum { read_i,
+enum { idle, read_i,
 wait_i,
 wait_i_2,
 save_i,
@@ -48,7 +48,7 @@ always_ff@(posedge clk) begin
 		j<=0;
 		wren<= 0;
 		done_flag<=0;
-		state<= read_i;
+		state<= idle;
 	
 	end
 
@@ -56,6 +56,11 @@ always_ff@(posedge clk) begin
 	else begin
 		case(state) 
 		
+			idle: begin
+					if(start_flag==0) state<= idle;
+					else state<= read_i;
+				end			
+				
 			read_i: begin
 				
 				if ( i<256) begin

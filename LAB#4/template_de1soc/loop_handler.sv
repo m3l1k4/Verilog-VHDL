@@ -27,7 +27,7 @@ if (rst) begin
 first_loop_start<=0;
 second_loop_start<= 0;
 light<= 3'b100;
-
+state<= call_first_loop;
 end
 
 else begin
@@ -38,8 +38,9 @@ case( state)
 
 		first_loop_start<=1;
 		second_loop_start<= 0;
-		state<= wait_first_loop_done;
 		light<= 3'b001;
+		state<= wait_first_loop_done;
+		
 
 	end
 
@@ -50,8 +51,9 @@ case( state)
 		
 			first_loop_start<=1;
 			second_loop_start<= 1;
-			state<= wait_second_loop_done;
 			light<= 3'b010;
+			state<= wait_second_loop_done;
+			
 		end
 
 		else begin
@@ -68,8 +70,9 @@ case( state)
 		
 			first_loop_start<=1;
 			second_loop_start<= 1;
+			light<= 3'b101;
 			state<= done_done;
-		light<= 3'b101;
+		
 		
 		end
 	

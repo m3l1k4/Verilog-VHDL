@@ -96,7 +96,7 @@ second_loop second(
 .sec_key(24'b00000000_00000010_01001001),  // secret key
 .start_flag(second_start),
 .done_flag(second_done)
-); 
+);  
 
 assign wren = wren1; //(first_done? wren2 : wren1) ;
 assign addr = addr1;//( first_done? addr2 : addr1);

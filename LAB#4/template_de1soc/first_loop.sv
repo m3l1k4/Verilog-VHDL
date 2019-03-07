@@ -20,7 +20,8 @@ always_ff@(posedge clk) begin
 		address<=0;
 		addr_inc<=0;
 		wren <=0;
-		done_flag<=0;		
+		done_flag<=0;
+
 		
 	end
 	
