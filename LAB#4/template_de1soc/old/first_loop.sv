@@ -28,9 +28,11 @@ always_ff@(posedge clk, negedge reset_n) begin
 	
 		if ( addr_inc<256) begin
 		
-			addr_inc<= addr_inc + 1;
+			
 			address<= addr_inc;
 			data<= addr_inc;
+			addr_inc<= addr_inc + 1;
+			
 			wren<= 1;
 			done_flag<=0;
 			

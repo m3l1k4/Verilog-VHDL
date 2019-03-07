@@ -1,126 +1,44 @@
-module ksa (
-
-//////////// CLOCK //////////
-input                       CLOCK_50,
-
-//////////// LED //////////
-output           [9:0]      LEDR,
-
-//////////// KEY //////////
-input            [3:0]      KEY,
-
-//////////// SW //////////
-input            [9:0]      SW,
-
-//////////// SEG7 //////////
-output           [6:0]      HEX0,
-output           [6:0]      HEX1,
-output           [6:0]      HEX2,
-output           [6:0]      HEX3,
-output           [6:0]      HEX4,
-output           [6:0]      HEX5
-
-);
-
-logic clk, reset_n;
-logic [6:0] ssOut;
-logic [3:0] nIn;
-
-assign clk = CLOCK_50 ;
-assign reset_n = KEY[3];
-
-
-
-SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
-
-
-///===========================================================
-
-// for i = 0 to 255 { s[i] = i; }
+module ksa(input logic CLOCK_50, input logic [3:0] KEY, input logic [9:0] SW,
+             output logic [6:0] HEX0, output logic [6:0] HEX1, output logic [6:0] HEX2,
+             output logic [6:0] HEX3, output logic [6:0] HEX4, output logic [6:0] HEX5,
+             output logic [9:0] LEDR);
 
 
 
 
-wire  wren, wren1, wren2;
-wire [7:0] addr, addr1,addr2;
-wire [7:0] data_to_mem, data_to_mem_1, data_to_mem_2;
+    
+wire  rdy_ksa,rdy_init,en_init, wren, wreninit, wrenksa;
+wire [7:0] addr, initaddr, ksaaddr;
+wire [7:0] datain, data1, data2;
 wire [7:0] q;
 
-wire first_done, second_done, first_start, second_start;
-/*
-loop_handler LH(
 
-.clok(clk),
-.rst(reset_n),
+wire [23:0] keyin;
+assign keyin = 'h00033C;
 
-.first_loop_done(first_done),
-.second_loop_done(second_done),
+ 
+	 
+		 
+	 		loop_1 tbinity(.clk(CLOCK_50), .rst_n(KEY[3]), 
+		.en(en_init), .rdy(rdy_init), .addr(initaddr), .wrdata(data1), .wren(wreninit));
+	
+	loop_2 tbksay(.clk(CLOCK_50), .rst_n(KEY[3]), .en(rdy_init), .rdy(rdy_ksa), 
+	.key(keyin), .rddata(q), .addr(ksaaddr), .wrdata(data2), .wren(wrenksa));
+	
+	
+muxdata tbmuxed( .wreninit(wreninit), .wrenksa(wrenksa) , .initdata(data1), .ksadata(data2), 
+				 .initaddr(initaddr), .ksaaddr(ksaaddr), 
+				.clk(CLOCK_50), .rdy_init(rdy_init) , .data(datain), .address(addr), .wren(wren) );
 
-.first_loop_start(first_start),
-.second_loop_start(second_start),
-.light(light_sig)
+	
+//////////////////////////////////////////////////////////	
+	
+    s_mem tbs( .address(addr), .clock(CLOCK_50), .data(datain), .wren(wren), .q(q) );
+	 
+	 
 
+	 
+	 
+	 // your code here
 
-); */
-
-wire [2:0] light_sig;
-
-assign LEDR[2:0] = light_sig;
-
-
-first_loop first(
-
-.clk(clk),
-.reset_n(reset_n),
-.address(addr1),
-.data(data_to_mem_1),
-.wren(wren1),
-
-.done_flag(first_done),
-.start_flag(first_start)
-
-
-);
-
-
- muxdata ctrl( .first_done(first_done), .wren1(wren1), .wren2(wren2),
-				.data_in_1(data_to_mem_1), .data_in_2(data_to_mem_2), 
-				 .addrs1(addr1), .addrs2(addr2), 
-				.clk(clk), .data(data_to_mem), .address(addr),.wren(wren) );
-
-
-
-
-second_loop second(
-
-.clk(clk),
-.reset_n(reset_n),
-.address(addr2),
-.data(data_to_mem_2), //input to mem
-.data_read(q), // data from mem
-.wren(wren2),  // write enable output 
-.sec_key('h00033C),  // 24'b00000000_00000010_01001001secret key 585
-.start_flag(first_done),
-.done_flag(second_done)
-);  
-/*
-assign wren = (first_done? wren2 : wren1) ;
-assign addr = ( first_done? addr2 : addr1);
-assign data_to_mem = ( first_done? data_to_mem_2 : data_to_mem_1); // ( first_done? data_to_mem_2 : data_to_mem_1);
-*/
-
-assign LEDR[4] = ( first_done ? 1 : 0 ) ; 
-assign LEDR[5] = ( second_done? 1: 0 ) ;
-
-
-s_memory S(
-	.address(addr),
-	.clock(clk),
-	.data(data_to_mem),
-	.wren(wren),
-	.q(q));
-
-
-
-
-endmodule 
+endmodule

@@ -1,4 +1,4 @@
-module muxdata( input logic first_done, input logic wren1, input logic wren2,
+module mux_loop_handle( input logic first_done, input logic wren1, input logic wren2,
 				input logic [7:0] data_in_1, input logic [7:0] data_in_2, 
 				 input logic [7:0] addrs1, input logic [7:0] addrs2, 
 				input clk, output logic [7:0] data, output logic [7:0] address, output logic wren );

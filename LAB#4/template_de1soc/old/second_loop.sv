@@ -31,13 +31,15 @@ finish } state;
 
 //assign keys[23:10] = 0
 
-integer i, j,k;
-
+integer i =1; 
+integer j =0;
+integer k =0;
 
 logic key_length;
 assign key_length = 3;
 
-reg [7:0] data_i, data_j, secret_key;
+reg [7:0] data_i, data_j;
+reg [23:0] secret_key;
 
 
 always_ff@(posedge clk, negedge reset_n) begin
@@ -178,7 +180,7 @@ always_ff@(posedge clk, negedge reset_n) begin
 				done_flag<=0;
 				data<= data_j;
 				
-				done_flag<=0;
+				
 				i<=i+1;
 				state<= read_i;
 			
