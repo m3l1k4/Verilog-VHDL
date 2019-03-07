@@ -7,7 +7,7 @@ output logic [7:0] data,
 output logic wren,
 output logic done_flag,
 input logic start_flag
-
+ 
 ); 
 integer addr_inc = 0;  // used to increment address
 

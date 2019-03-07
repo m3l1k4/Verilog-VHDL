@@ -1,15 +1,45 @@
-module ksa(input logic CLOCK_50, input logic [3:0] KEY, input logic [9:0] SW,
-             output logic [6:0] HEX0, output logic [6:0] HEX1, output logic [6:0] HEX2,
-             output logic [6:0] HEX3, output logic [6:0] HEX4, output logic [6:0] HEX5,
-             output logic [9:0] LEDR);
+module ksa (
+
+//////////// CLOCK //////////
+input                       CLOCK_50,
+
+//////////// LED //////////
+output           [9:0]      LEDR,
+
+//////////// KEY //////////
+input            [3:0]      KEY,
+
+//////////// SW //////////
+input            [9:0]      SW,
+
+//////////// SEG7 //////////
+output           [6:0]      HEX0,
+output           [6:0]      HEX1,
+output           [6:0]      HEX2,
+output           [6:0]      HEX3,
+output           [6:0]      HEX4,
+output           [6:0]      HEX5
+
+);
+
+logic clk, reset_n;
+logic [6:0] ssOut;
+logic [3:0] nIn;
+
+assign clk = CLOCK_50 ;
+assign reset_n = KEY[3];
 
 
 
+SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
 
-    
-wire  rdy_ksa,rdy_init,en_init, wren, wreninit, wrenksa;
-wire [7:0] addr, initaddr, ksaaddr;
-wire [7:0] datain, data1, data2;
+
+///===========================================================
+
+   
+wire  two_done,LOOP_1_done, wren, wren1, wren2;
+wire [7:0] addr, addr_one, addr_two;
+wire [7:0] data_to_mem, data1, data2;
 wire [7:0] q;
 
 
@@ -18,27 +48,48 @@ assign keyin = 'h00033C;
 
  
 	 
+	 
+first_loop  first(
+
+.clk(clk),
+.reset_n(KEY[3]),
+.address(addr_one),
+.data(data1),
+.wren(wren1),
+.done_flag(LOOP_1_done),
+.start_flag()
+
+); 
+	 
+	 
 		 
-	 		loop_1 tbinity(.clk(CLOCK_50), .rst_n(KEY[3]), 
-		.en(en_init), .rdy(rdy_init), .addr(initaddr), .wrdata(data1), .wren(wreninit));
+	 //		loop_1 tbinity(.clk(CLOCK_50), .rst_n(KEY[3]), 
+	//	.en(en_init), .rdy(LOOP_1_done), .addr(addr_one), .wrdata(data1), .wren(wren_1));
 	
-	loop_2 tbksay(.clk(CLOCK_50), .rst_n(KEY[3]), .en(rdy_init), .rdy(rdy_ksa), 
-	.key(keyin), .rddata(q), .addr(ksaaddr), .wrdata(data2), .wren(wrenksa));
+loop_2 second(
+.clk(CLOCK_50), 
+.rst_n(KEY[3]), 
+.first_loop_done(LOOP_1_done), 
+.done_flag(two_done), 
+.key(keyin), 
+.rddata(q), 
+.addr(addr_two), 
+.wrdata(data2), 
+.wren(wren2));
 	
 	
-muxdata tbmuxed( .wreninit(wreninit), .wrenksa(wrenksa) , .initdata(data1), .ksadata(data2), 
-				 .initaddr(initaddr), .ksaaddr(ksaaddr), 
-				.clk(CLOCK_50), .rdy_init(rdy_init) , .data(datain), .address(addr), .wren(wren) );
+muxdata one_two_sel( .wren_1(wren1), .wren_2(wren2), 
+				.data_in_one(data1), .data_in_two(data2), 
+				.addr_one(addr_one), .addr_two(addr_two), 
+				.clk(CLOCK_50), .LOOP_1_done(LOOP_1_done), 
+				.data(data_to_mem), .address(addr), .wren(wren) );
 
 	
 //////////////////////////////////////////////////////////	
 	
-    s_mem tbs( .address(addr), .clock(CLOCK_50), .data(datain), .wren(wren), .q(q) );
-	 
+   s_memory S( .address(addr), .clock(CLOCK_50), .data(data_to_mem), .wren(wren), .q(q) );
 	 
 
-	 
-	 
-	 // your code here
 
-endmodule
+
+endmodule 
