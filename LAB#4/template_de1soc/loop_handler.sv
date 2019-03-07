@@ -20,9 +20,9 @@ wait_second_loop_done,
 done_done} state;
 
 
-always_ff@(posedge clok, posedge rst) begin
+always_ff@(posedge clok, negedge rst) begin
 
-if (rst) begin
+if (rst==0) begin
 
 first_loop_start<=0;
 second_loop_start<= 0;

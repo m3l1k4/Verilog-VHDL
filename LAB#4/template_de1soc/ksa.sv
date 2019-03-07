@@ -93,7 +93,7 @@ second_loop second(
 .data(data_to_mem_2), //input to mem
 .data_read(q), // data from mem
 .wren(wren2),  // write enable output 
-.sec_key(24'b000000000000001100111100),  // 24'b00000000_00000010_01001001secret key 585
+.sec_key('h00033C),  // 24'b00000000_00000010_01001001secret key 585
 .start_flag(second_start),
 .done_flag(second_done)
 );  
