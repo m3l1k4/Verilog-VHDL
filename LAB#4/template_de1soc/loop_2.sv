@@ -52,7 +52,7 @@ always_ff @(posedge clk, negedge rst_n) begin
 
 						if ( i < 256) begin // change to 256 before simulation
 
-								n <= i%keylength;
+								n <= i%3;
 								addr <= i ;
 								done_flag <= 0;
 								wren <= 0; 
@@ -66,15 +66,21 @@ always_ff @(posedge clk, negedge rst_n) begin
 			
 			// two cycle delay
 			
-			wait_i: state<=wait_i_2;
-			wait_i_2: state<=save_i;
+			wait_i: begin state<=wait_i_2; end
+			wait_i_2: begin 
+			// calc secret while you're at it
+			
+				if ( n == 0 )  secret_key <= key[23:16];
+				else if (n==1) secret_key <= key[15:8];
+				else secret_key <= key[7:0] ; // n = 2
+			
+			
+			state<=save_i; end
 
 			save_i: begin
 
 
-				if ( n == 0 )  secret_key <= key[23:16];
-				else if (n==1) secret_key <= key[15:8];
-				else secret_key <= key[7:0] ; // n = 2
+
 
 				rdata_i<= rddata;
 				j <= (j + rddata + secret_key) % 256 ;
@@ -93,8 +99,8 @@ always_ff @(posedge clk, negedge rst_n) begin
 
 			// two cycle delay
 			
-			wait_j: state<=wait_j_2;
-			wait_j_2:  state<=save_j;
+			wait_j: begin state<=wait_j_2; end
+			wait_j_2: begin state<=save_j; end
 
 			save_j: begin
 

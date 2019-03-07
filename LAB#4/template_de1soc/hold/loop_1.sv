@@ -5,7 +5,7 @@ module loop_1(input logic clk, input logic rst_n,
 			
 // your code here
 
-integer i = 0;
+integer addr_inc = 0;
 
 always_ff @(posedge clk, negedge rst_n) begin
 
