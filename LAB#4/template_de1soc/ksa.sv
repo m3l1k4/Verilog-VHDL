@@ -44,7 +44,7 @@ wire [7:0] q;
 
 
 wire [23:0] keyin;
-assign keyin = 'h00033C;
+assign keyin = 24'b000000000000001001001001;
 
  
 	 

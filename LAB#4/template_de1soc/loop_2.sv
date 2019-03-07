@@ -19,7 +19,7 @@ integer n = 0; // for key index
 
 reg [7:0] rdata_i;
 reg [7:0] rdata_j;
-reg [23:0] secret_key;
+reg [7:0] secret_key;
 
 parameter keylength = 3;
 

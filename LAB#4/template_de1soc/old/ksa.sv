@@ -69,7 +69,7 @@ assign LEDR[2:0] = light_sig;
 assign LEDR[4] = ( first_done ? 1 : 0 ) ; 
 assign LEDR[5] = ( second_done? 1: 0 ) ;
 wire [23:0] keyd;
-assign keyd = 'h00033C;
+assign keyd = 24'b000000000000001001001001;
 
 
 first_loop first(
