@@ -2,8 +2,8 @@ module loop_3(
 input logic clk,
 input logic reset,
 input logic start_flag,
-//input logic [7:0] data_in,
-//output logic [7:0] data_out,
+input logic [7:0] data_in,
+output logic [7:0] data_out,
 output logic done_flag,
 
            output logic [7:0] addr, 
@@ -82,7 +82,7 @@ always_ff @(posedge clk, negedge reset) begin
 		 state<=calc_i;
 	end
 	
-	else if (start_flag) begin
+	else begin
 	
 	
 	case(state)
