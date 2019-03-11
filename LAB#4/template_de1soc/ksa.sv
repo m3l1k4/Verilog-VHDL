@@ -46,7 +46,7 @@ wire [7:0] q, q_em, q_dm;
 
 
 wire [23:0] keyin;
-assign keyin = 24'b000000000000001001001001;
+assign keyin = 24'b000000000000001111111111;
 
  
 	 
