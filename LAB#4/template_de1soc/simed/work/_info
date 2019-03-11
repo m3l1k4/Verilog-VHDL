@@ -9,20 +9,20 @@ z2
 cModel Technology
 dC:/intelFPGA_lite/17.1
 vloop_3
-DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 !s110 1552276548
 !i10b 1
 !s100 :m?bXOMlG^J4fJ134eYjW3
 I^6^ODeG`JFfLibWCfhOPj1
-VDg1SIo80bB@j0V0VzS_@n1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
 !s105 loop_3_sv_unit
 S1
-dC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed
+Z2 dC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed
 w1552276545
 8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv
 FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv
 L0 1
-OV;L;10.5b;63
+Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
@@ -30,5 +30,29 @@ r1
 !s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv|
 !i113 1
-o-work work -sv
-tCvgOpt 0
+Z4 o-work work -sv
+Z5 tCvgOpt 0
+vxored
+R0
+!s110 1552281452
+!i10b 1
+!s100 c<7cmAUIc=<h>IK9RK3je2
+I=E0=zL:YHAo5>zC3E^dBP1
+R1
+!s105 xored_sv_unit
+S1
+R2
+w1552281445
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/xored.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/xored.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1552281452.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/xored.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/xored.sv|
+!i113 1
+R4
+R5

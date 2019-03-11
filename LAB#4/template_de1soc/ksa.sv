@@ -38,10 +38,10 @@ SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
 
    
 wire  two_done,LOOP_1_done, loop_3_done,
-		wren, wren1, wren2, wren3, wren3_dec
+		wren, wren1, wren2, wren3,
 		wren_dm;
-wire [7:0] addr, addr_one, addr_two, addr_3, addr_3_enc, addr_3_dec, addr_dm, addr_em;
-wire [7:0] data_to_mem, data1, data2, data3, data3_dm, data_dm;
+wire [7:0] addr, addr_one, addr_two, addr_3, addr_dm, addr_em;
+wire [7:0] data_to_mem, data1, data2, data3, data_dm;
 wire [7:0] q, q_em, q_dm;
 
 

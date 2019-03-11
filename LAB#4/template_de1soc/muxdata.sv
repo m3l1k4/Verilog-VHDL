@@ -18,7 +18,7 @@ input loop_3_done,
 
  output logic [7:0] data,
  output logic [7:0] address, 
- output logic wren,);
+ output logic wren);
 
 
 always@(posedge clk) begin
@@ -30,7 +30,7 @@ address = addr_one;
 wren = wren_1;
 end
 
-else if ( LOOP_1_done == 1) begin
+else if ( LOOP_1_done == 1 && loop_2_done == 0) begin
 
 data = data_in_two ; 
 address = addr_two;

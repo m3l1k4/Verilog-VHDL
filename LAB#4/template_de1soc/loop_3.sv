@@ -31,7 +31,7 @@ parameter msg_length = 32;
 parameter k_max = 31 ;  // msg length - 1 
 
 
-reg [15:0] i,j,k,m;
+integer i,j,k,m;
 reg [7:0] data_i;
 reg [7:0] data_j;
 reg [7:0] data_f;
@@ -75,10 +75,12 @@ always_ff @(posedge clk, negedge reset) begin
 	if (reset == 0 )  begin
 		 i <= 0;
 		 j <= 0;
+		 
 		 k <= 0;
 		 m<= 0;
 		 done_flag <= 0; 
 		 wren <= 0; 
+		 wren_dec<=0;
 		 state<=calc_i;
 	end
 	
@@ -90,7 +92,7 @@ always_ff @(posedge clk, negedge reset) begin
 	
 		calc_i: begin
 			
-			if ( k< k_max) begin  // for k = 0 to message_length-1
+			if ( k< 32) begin  // for k = 0 to message_length-1
 			
 			i <=(i + 1)%256;  //i = (i+1) mod 256
 			done_flag <= 0;
@@ -232,7 +234,7 @@ always_ff @(posedge clk, negedge reset) begin
 			addr_dec<=k;  
 			wrdata_dec<=data_xord;  //decrypted_output[k]
 			k <= k +1;
-			state<= get_s_i;
+			state<= calc_i;
 			
 		
 		end
