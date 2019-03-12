@@ -32,7 +32,7 @@ parameter k_max = 31 ;  // msg length - 1
 
 
 integer i,j,m;
-reg [5:0] k;
+reg [5:0] k; // made into reg was integer 
 reg [7:0] data_i;
 reg [7:0] data_j;
 reg [7:0] data_f;
