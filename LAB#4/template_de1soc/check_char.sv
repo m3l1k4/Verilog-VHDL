@@ -1,7 +1,7 @@
 module check_char(
 input clok,
 input resetm,
-
+output [1:0] LEDS,
 input logic new_char, // character flag from loop_3
 output logic new_key,  // new key flag fed to loop 1
 output logic start_over, // start over sets all 3 loops in init
@@ -9,14 +9,19 @@ output logic found_key, // found the key
 output logic matched_cont, // character matched move on to next
 input [7:0] char_recieved, // char from loop 3
 
-input [5:0] char_count // k in loop 3
+input [5:0] char_count, // k in loop 3
 
+output logic done,
+output logic last_key,
+
+output logic compared_char,
+output reg [23:0] key//
 );
 
 
 reg [7:0] char_range; // range 97-122  , increments by 2
 reg [3:0] char_range_counter; // 0 - 12 counter
-reg [23:0] key; // 
+ 
 
 parameter key_max =  24'b001111111111111111111111;
 
@@ -33,10 +38,23 @@ finished_string
 
 
 
-always_ff@() begin
+always_ff@(posedge clok, negedge resetm) begin
 
-	if () begin
+	if (resetm == 0 ) begin
 
+		start_over<=0 ; // start over
+		found_key<= 0; // did not find a key 
+		matched_cont<= 0; // its not a match
+		new_key<= 0;
+		char_range_counter<=0; 
+		char_range<= 97; // reset char range 
+		key<= 0 ; // reset key 
+		
+		done<= 0; 
+		last_key <=0;
+		compared_char<=0;
+		state<= wait_for_next_char;
+	
 	end
 
 	else begin
@@ -44,6 +62,9 @@ always_ff@() begin
 		
 		wait_for_next_char: begin
 
+				compared_char<=0;
+				start_over<=0 ; 
+				
 			if ( char_count< 32) begin // char_count is wired to K in loop_3 directly 
 			
 					if (new_char) begin // loop 3 will raise new char flag once its done the xor
@@ -69,18 +90,20 @@ always_ff@() begin
 
 					if (   (char_recieved == char_range) 
 						|| (char_recieved == ( char_range +1 ) )
-						|| (char_recieved == ( char_range +2 ) )
+						//|| (char_recieved == ( char_range +2 ) )
 						|| (char_recieved === 32 ) // char_space
 					 
 						
 						) begin
 					
-					char_range<= char_range + 4 ; // moving along the 97-122 , doing four at a time because it is less cycles
-					char_range_counter<= char_range_counter +1; // counting 0 - 30
+					char_range<= 97 ; // reseting range and counter
+					char_range_counter<= 0; 
 					
 					start_over<=0 ; // don't start over
 					found_key<= 0; // did not find a key yet
 				
+					compared_char<=1;
+						
 					state<= wait_for_next_char; // go and wait until you get next char 
 					
 				
@@ -89,6 +112,9 @@ always_ff@() begin
 					else begin
 					
 					matched_cont<= 0; // its not a match
+					compared_char<=0;
+					char_range<= char_range + 2 ; // moving along the 97-122 , doing 2 at a time because it is less cycles
+					char_range_counter<= char_range_counter +1; // counting 0 - 30
 					
 					state<= check_char; // compare against next char
 					
@@ -99,7 +125,8 @@ always_ff@() begin
 					
 
 			else begin
-
+			
+			compared_char<=1;
 			state<= reached_last_char; // went through all 97-122 and did not find a match
 
 			end		
@@ -113,7 +140,9 @@ always_ff@() begin
 				
 				key<=key+1; // increment key 
 				new_key<= 1; // raise new key flag
+				start_over<=1 ; // start over
 				state<= wait_for_next_char;
+				end
 				
 			else
 				
@@ -124,24 +153,28 @@ always_ff@() begin
 
 	reached_last_char: begin
 
-		start_over<=1 ; // start over
-		found_key<= 0; // did not find a key 
-		matched_cont<= 0; // its not a match
-		char_count<= 0; // reset char count
-		char_range<= 0; // reset char range 
-		state<= get_next_key; // request next key 	
+
+		
+	start_over<=1 ; // start over
+	found_key<= 0; // did not find a key 
+	matched_cont<= 0; // its not a match
+    char_range_counter<=0;
+	char_range<= 0; // reset char range 
+	state<= get_next_key; // request next key 	
+
+		
 
 	end
 
 
 	reached_last_key: begin
 
-	LEDS[9] <= 1;
+	last_key <= 1; // assign led 8 to it
 
 	end
 
 	finished_string: begin
-	LEDS[8]<= 1; 
+	done<= 1;  // assign led 9 to it 
 
 	state<= finished_string;
 
