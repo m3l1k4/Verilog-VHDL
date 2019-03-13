@@ -9,7 +9,9 @@ output logic done_flag,
 //input logic start_flag,
 
 input logic start_over,
-input logic new_key_incoming 
+input logic new_key_incoming
+
+//output logic reset_others
  
 ); 
 integer addr_inc = 0;  // used to increment address
@@ -25,7 +27,7 @@ always_ff@(posedge clk, negedge reset_n) begin
 		addr_inc<=0;
 		wren <=0;
 		done_flag<=0;
-
+	//	reset_others<=0;
 		
 	end
 	
@@ -36,12 +38,14 @@ always_ff@(posedge clk, negedge reset_n) begin
 		addr_inc<=0;
 		wren <=0;
 		done_flag<=0;
+	//	reset_others<=0;
 
 	
 	end
 	
 	
 	else begin
+	
 	
 		if ( addr_inc<256) begin
 		
