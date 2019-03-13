@@ -64,8 +64,11 @@ first_loop  first(
 .start_over(start_over_flag)
 // from cracker
 
+
+
 ); 
 	 
+
 
 loop_2 second(
 .clk(CLOCK_50), 

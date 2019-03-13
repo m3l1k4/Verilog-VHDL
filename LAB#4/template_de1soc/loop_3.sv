@@ -46,7 +46,7 @@ reg [7:0] data_k;
 
 
 
-enum{wait_for_start_flag,
+enum{start_over_state, wait_for_start_flag,
 calc_i,
 get_s_i,
 
@@ -68,7 +68,7 @@ get_k,
 wait_k,
 wait_k_2,
 save_k,
-f_xor_data_k,
+f_xor_data_k, wait_for_compare,
 write_dec_k,
 done
 } state;
@@ -95,10 +95,17 @@ always_ff @(posedge clk, negedge reset) begin
 	end
 	
 	
-	else if ( start_over == 1 ) begin
+	else if (start_flag) begin
 	
-		i <= 0;
-		j <= 0;
+	
+	case(state)
+	
+		
+		start_over_state: begin
+		
+		
+		 i <= 0;
+		 j <= 0;
 		 
 		 k <= 0;
 		 m<= 0;
@@ -108,17 +115,18 @@ always_ff @(posedge clk, negedge reset) begin
 		 
 		 new_char<=0;
 		 
-		 state<=wait_for_start_flag;
-	
-	
-	end
-	
-	
-	else if (start_flag) begin
-	
-	
-	case(state)
-	
+		data_i<=0;
+		data_j<=0;
+		data_f<=0;
+		data_k<=0;
+		
+		
+		 state<= wait_for_start_flag;
+		
+
+		
+		
+		end
 		
 		
 		wait_for_start_flag: begin
@@ -265,30 +273,33 @@ always_ff @(posedge clk, negedge reset) begin
 		f_xor_data_k: begin
 		
 			data_xord <= data_f ^ data_k; //f xor encrypted_input[k]
-			state<= write_dec_k;
+			state<= wait_for_compare;
+			new_char<=1; 
 			
 		end
 		
-		write_dec_k: begin
+		wait_for_compare: begin
 		
-			
-			  
-			  //decrypted_output[k]
-			
-			new_char<=1; // tell cracker about new char on the line
-			
-			if ( char_compare) begin
+		
+		
+		if ( start_over) state<= start_over_state;
+		
+		else if ( char_compare) state<= write_dec_k;
+		
+		
+		end
+		
+		
+		
+		write_dec_k: begin
+				
+			new_char<=0; 
 			wrdata_dec<=data_xord;
 			wren_dec<=1;
 			addr_dec<=k;
 			k <= k +1;
 			
-			new_char<=0;
-			
-			state<= calc_i;  end
-			
-			
-			else state<= write_dec_k;
+			state<= calc_i;  
 			
 		
 		end
@@ -302,6 +313,10 @@ always_ff @(posedge clk, negedge reset) begin
 			done_flag<= 1;
 			wren<= 0;
 			wren_dec<= 0;
+			
+			if ( start_over)
+			state<= start_over_state;
+			else
 			state<=done;
 		
 		

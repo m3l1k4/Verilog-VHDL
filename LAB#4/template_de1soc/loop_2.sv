@@ -26,7 +26,7 @@ reg [7:0] secret_key;
 
 parameter keylength = 3;
 
-enum { 
+enum { start_over_state,
 wait_i, wait_i_2, 
 wait_j, wait_j_2,calcj,
 save_i, save_j,
@@ -45,23 +45,34 @@ always_ff @(posedge clk, negedge rst_n) begin
 		 state<=read_i;
 	 end
 	 
-	 
-	else if (start_over == 1) begin
-	
-		i <= 0;
-		j <= 0;
-		n <= 0;
-		done_flag <= 0; 
-		wren <= 0; 
-		state<=read_i;
-	
-	end
 
 	else if ( first_loop_done) begin
 
 		case (state)
 		 
 
+			start_over_state: begin
+				 
+				 
+				 i <= 0;
+				j <= 0;
+				n <= 0;
+				done_flag <= 0; 
+				wren <= 0; 
+				
+				rdata_i<=0;
+				rdata_j<=0;
+				secret_key<=0;
+								
+		 
+				if ( first_loop_done) state<=read_i;
+				else state<=start_over_state;
+		 
+				
+			
+			end
+			
+			
 			read_i: begin
 
 
@@ -148,7 +159,9 @@ always_ff @(posedge clk, negedge rst_n) begin
 				addr<=0;
 				done_flag<= 1;
 				wren<= 0;
-				state<=done;
+				if (start_over) state<= start_over_state;
+				
+				else state<=done;
 			end
 
 
