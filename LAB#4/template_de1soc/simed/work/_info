@@ -10,15 +10,15 @@ cModel Technology
 dC:/intelFPGA_lite/17.1
 vcheck_char
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-!s110 1552370611
+!s110 1552509331
 !i10b 1
-!s100 o8g`lb=>TnURZU;EKHL>D0
-IkWg1M>9dFLfRZalg`ET;;1
+!s100 VaEGS_VnC@Z5W?c:8dLn81
+I7Wk=kUSc1]zm5WA3h4TXj1
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 !s105 check_char_sv_unit
 S1
 Z2 dC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed
-w1552370607
+w1552509319
 8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv
 FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv
 L0 1
@@ -26,23 +26,47 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1552370611.000000
+!s108 1552509330.000000
 !s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv|
 !i113 1
 Z4 o-work work -sv
 Z5 tCvgOpt 0
+vcracker_tb
+R0
+!s110 1552509522
+!i10b 1
+!s100 e:ID^Z:oJMcB;7QZg9@db1
+IP4ob1;Cg=_HjzLl4FnEcU2
+R1
+!s105 cracker_tb_sv_unit
+S1
+R2
+w1552509519
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1552509522.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv|
+!i113 1
+R4
+R5
 vloop_3
 R0
-!s110 1552276548
+!s110 1552508856
 !i10b 1
-!s100 :m?bXOMlG^J4fJ134eYjW3
-I^6^ODeG`JFfLibWCfhOPj1
+!s100 0[m25[XB>IdaijQM]O_6c3
+I24VkS:dejBhI^ZY53EEFg1
 R1
 !s105 loop_3_sv_unit
 S1
 R2
-w1552276545
+w1552508848
 8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv
 FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv
 L0 1
@@ -50,9 +74,57 @@ R3
 r1
 !s85 0
 31
-!s108 1552276547.000000
+!s108 1552508856.000000
 !s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/loop_3.sv|
+!i113 1
+R4
+R5
+vtest_statement
+R0
+!s110 1552501513
+!i10b 1
+!s100 6dUZY545`kb<]7TgLA?`l3
+IbnnWg9[aCWH5Fkje@@gdY0
+R1
+!s105 test_statement_sv_unit
+S1
+R2
+w1552501502
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_statement.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_statement.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1552501513.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_statement.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_statement.sv|
+!i113 1
+R4
+R5
+vtest_tb
+R0
+!s110 1552499015
+!i10b 1
+!s100 Rd1Z1hWlf[i3gBO?j:<CZ1
+IB7:^5Kd^IZjTVnhM2>HKQ3
+R1
+!s105 test_tb_sv_unit
+S1
+R2
+w1552499011
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_tb.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_tb.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1552499015.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/test_tb.sv|
 !i113 1
 R4
 R5

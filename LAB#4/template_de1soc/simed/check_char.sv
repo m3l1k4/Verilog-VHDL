@@ -1,7 +1,7 @@
 module check_char(
 input clok,
 input resetm,
-output [1:0] LEDS,
+output logic [1:0] LEDS,
 input logic new_char, // character flag from loop_3
 output logic new_key,  // new key flag fed to loop 1
 output logic start_over, // start over sets all 3 loops in init
@@ -20,7 +20,7 @@ output reg [23:0] key//
 
 
 reg [7:0] char_range; // range 97-122  , increments by 2
-reg [3:0] char_range_counter; // 0 - 12 counter
+reg [6:0] char_range_counter; // 0 - 12 counter
  
 
 parameter key_max =  24'b001111111111111111111111;
@@ -48,8 +48,8 @@ always_ff@(posedge clok, negedge resetm) begin
 		new_key<= 0;
 		char_range_counter<=0; 
 		char_range<= 97; // reset char range 
-		key<= 0 ; // reset key 
-		
+		key<= 24'b000000000000001001000001 ; // reset key 
+		LEDS<=0;
 		done<= 0; 
 		last_key <=0;
 		compared_char<=0;
@@ -65,7 +65,7 @@ always_ff@(posedge clok, negedge resetm) begin
 				compared_char<=0;
 				start_over<=0 ; 
 				
-			if ( char_count< 32) begin // char_count is wired to K in loop_3 directly 
+			if ( char_count<= 32) begin // char_count is wired to K in loop_3 directly 
 			
 					if (new_char) begin // loop 3 will raise new char flag once its done the xor
 						
@@ -86,10 +86,10 @@ always_ff@(posedge clok, negedge resetm) begin
 
 		check_char: begin
 
-			if ( char_range_counter<= 12 ) begin  // comparing 2 at a time 
+			if ( char_range_counter<= 26 ) begin  // comparing 2 at a time 
 
 					if (   (char_recieved == char_range) 
-						|| (char_recieved == ( char_range +1 ) )
+						//|| (char_recieved == ( char_range +1 ) )
 						//|| (char_recieved == ( char_range +2 ) )
 						|| (char_recieved === 32 ) // char_space
 					 
@@ -113,7 +113,7 @@ always_ff@(posedge clok, negedge resetm) begin
 					
 					matched_cont<= 0; // its not a match
 					compared_char<=0;
-					char_range<= char_range + 2 ; // moving along the 97-122 , doing 2 at a time because it is less cycles
+					char_range<= char_range + 1 ; // moving along the 97-122 , doing 2 at a time because it is less cycles
 					char_range_counter<= char_range_counter +1; // counting 0 - 30
 					
 					state<= check_char; // compare against next char
@@ -126,7 +126,7 @@ always_ff@(posedge clok, negedge resetm) begin
 
 			else begin
 			
-			compared_char<=1;
+			compared_char<=0;
 			state<= reached_last_char; // went through all 97-122 and did not find a match
 
 			end		
@@ -141,6 +141,10 @@ always_ff@(posedge clok, negedge resetm) begin
 				key<=key+1; // increment key 
 				new_key<= 1; // raise new key flag
 				start_over<=1 ; // start over
+				
+				char_range<= 97 ; // reseting range and counter
+					char_range_counter<= 0;
+				
 				state<= wait_for_next_char;
 				end
 				
@@ -170,12 +174,13 @@ always_ff@(posedge clok, negedge resetm) begin
 	reached_last_key: begin
 
 	last_key <= 1; // assign led 8 to it
-
+	LEDS[0]<=1;
+	state<= reached_last_key;
 	end
 
 	finished_string: begin
 	done<= 1;  // assign led 9 to it 
-
+	LEDS[1]<=1;
 	state<= finished_string;
 
 	end
