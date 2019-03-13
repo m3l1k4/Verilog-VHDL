@@ -47,7 +47,7 @@ always_ff@(posedge clok, negedge resetm) begin
 		matched_cont<= 0; // its not a match
 		new_key<= 1;
 		char_range_counter<=0; 
-		char_range<= 0; // reset char range 
+		char_range<= 97; // reset char range 
 		key<= 0 ; // reset key 
 		
 		done<= 0; 
@@ -88,13 +88,13 @@ always_ff@(posedge clok, negedge resetm) begin
 
 					if (   (char_recieved == char_range) 
 						|| (char_recieved == ( char_range +1 ) )
-						|| (char_recieved == ( char_range +2 ) )
+						//|| (char_recieved == ( char_range +2 ) )
 						|| (char_recieved === 32 ) // char_space
 					 
 						
 						) begin
 					
-					char_range<= 0 ; // reseting range and counter
+					char_range<= 97 ; // reseting range and counter
 					char_range_counter<= 0; 
 					
 					start_over<=0 ; // don't start over
