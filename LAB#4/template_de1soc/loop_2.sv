@@ -8,7 +8,10 @@ module loop_2(
            output logic [7:0] addr, 
 		   input logic [7:0] rddata, 
 		   output logic [7:0] wrdata, 
-		   output logic wren
+		   output logic wren,
+		   
+		   input logic start_over
+		   
 		   );
 		   
 		   
@@ -41,6 +44,18 @@ always_ff @(posedge clk, negedge rst_n) begin
 		 wren <= 0; 
 		 state<=read_i;
 	 end
+	 
+	 
+	else if (start_over == 1) begin
+	
+		i <= 0;
+		j <= 0;
+		n <= 0;
+		done_flag <= 0; 
+		wren <= 0; 
+		state<=read_i;
+	
+	end
 
 	else if ( first_loop_done) begin
 

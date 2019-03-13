@@ -18,9 +18,15 @@ output logic done_flag,
 		    output logic [7:0] addr_dec, 
 		   input logic [7:0] rddata_dec, 
 		   output logic [7:0] wrdata_dec,
-		   output logic wren_dec
+		   output logic wren_dec,
 		   
+		   output reg [5:0] k, // new added for cracker interface
+		   output logic new_char, // new added for cracker interface
+		   input logic char_compare, // cracker saying its done the comparison
 		   
+		   output reg [7:0] data_xord,// fed into char recieved in cracker
+		   
+		   input logic start_over
 
 ); 
 
@@ -32,15 +38,15 @@ parameter k_max = 31 ;  // msg length - 1
 
 
 integer i,j,m;
-reg [5:0] k; // made into reg was integer 
+//reg [5:0] k; // made into reg was integer 
 reg [7:0] data_i;
 reg [7:0] data_j;
 reg [7:0] data_f;
 reg [7:0] data_k;
-reg [7:0] data_xord;
 
 
-enum{
+
+enum{wait_for_start_flag,
 calc_i,
 get_s_i,
 
@@ -73,7 +79,7 @@ done
 
 always_ff @(posedge clk, negedge reset) begin
 
-	if (reset == 0 )  begin
+	if (reset == 0  )  begin
 		 i <= 0;
 		 j <= 0;
 		 
@@ -82,13 +88,45 @@ always_ff @(posedge clk, negedge reset) begin
 		 done_flag <= 0; 
 		 wren <= 0; 
 		 wren_dec<=0;
-		 state<=calc_i;
+		 
+		 new_char<=0;
+		 
+		 state<=wait_for_start_flag;
 	end
+	
+	
+	else if ( start_over == 1 ) begin
+	
+		i <= 0;
+		j <= 0;
+		 
+		 k <= 0;
+		 m<= 0;
+		 done_flag <= 0; 
+		 wren <= 0; 
+		 wren_dec<=0;
+		 
+		 new_char<=0;
+		 
+		 state<=wait_for_start_flag;
+	
+	
+	end
+	
 	
 	else if (start_flag) begin
 	
 	
 	case(state)
+	
+		
+		
+		wait_for_start_flag: begin
+		
+		if ( start_flag) state<= calc_i;
+		else state<= wait_for_start_flag;
+		
+		end
 	
 	
 		calc_i: begin
@@ -100,6 +138,8 @@ always_ff @(posedge clk, negedge reset) begin
 			
 			wren <= 0; 
 			wren_dec<= 0;
+			
+			new_char<=0;
 			
 			state<= get_s_i; 
 			
@@ -231,11 +271,24 @@ always_ff @(posedge clk, negedge reset) begin
 		
 		write_dec_k: begin
 		
+			
+			  
+			  //decrypted_output[k]
+			
+			new_char<=1; // tell cracker about new char on the line
+			
+			if ( char_compare) begin
+			wrdata_dec<=data_xord;
 			wren_dec<=1;
-			addr_dec<=k;  
-			wrdata_dec<=data_xord;  //decrypted_output[k]
+			addr_dec<=k;
 			k <= k +1;
-			state<= calc_i;
+			
+			new_char<=0;
+			
+			state<= calc_i;  end
+			
+			
+			else state<= write_dec_k;
 			
 		
 		end

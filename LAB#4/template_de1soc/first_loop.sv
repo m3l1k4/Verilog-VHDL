@@ -6,7 +6,10 @@ output logic [7:0] address,
 output logic [7:0] data,
 output logic wren,
 output logic done_flag,
-input logic start_flag
+//input logic start_flag,
+
+input logic start_over,
+input logic new_key_incoming 
  
 ); 
 integer addr_inc = 0;  // used to increment address
@@ -14,7 +17,9 @@ integer addr_inc = 0;  // used to increment address
 
 always_ff@(posedge clk, negedge reset_n) begin
 
-	if ( reset_n==0) begin
+	if ( reset_n==0 
+	//|| start_over == 1
+	) begin
 	
 		address<=0;
 		addr_inc<=0;
@@ -23,6 +28,18 @@ always_ff@(posedge clk, negedge reset_n) begin
 
 		
 	end
+	
+	
+	else if (start_over == 1) begin
+	
+		address<=0;
+		addr_inc<=0;
+		wren <=0;
+		done_flag<=0;
+
+	
+	end
+	
 	
 	else begin
 	

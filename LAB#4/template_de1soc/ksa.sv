@@ -46,7 +46,7 @@ wire [7:0] q, q_em, q_dm;
 
 
 wire [23:0] keyin;
-assign keyin = 24'b000000000000001111111111;
+//assign keyin = 24'b000000000000001111111111;
 
  
 	 
@@ -59,7 +59,10 @@ first_loop  first(
 .data(data1),
 .wren(wren1),
 .done_flag(LOOP_1_done),
-.start_flag()
+//.start_flag()
+
+.start_over(start_over_flag)
+// from cracker
 
 ); 
 	 
@@ -73,7 +76,12 @@ loop_2 second(
 .rddata(q), 
 .addr(addr_two), 
 .wrdata(data2), 
-.wren(wren2));
+.wren(wren2),
+
+// from cracker
+.start_over(start_over_flag)
+
+);
 	
 	
 muxdata one_two_sel( .wren_1(wren1), .wren_2(wren2), .wren_3(wren3),
@@ -84,6 +92,22 @@ muxdata one_two_sel( .wren_1(wren1), .wren_2(wren2), .wren_3(wren3),
 				
 				
 ////////////////////////////////////////////////////////////////
+
+
+		
+logic[1:0] led_cracker;
+
+assign LEDR[8:7] = led_cracker;
+
+wire new_char_flag,  new_key_flag ,
+	start_over_flag, found_key_flag,
+	matched_continue_flag, done_flag, last_key_flag,
+	compared_char_flag;	
+
+wire [7:0] char_from_loop_3;
+wire [5:0] k_count_fr_l3;	
+
+
 
 
 loop_3 third(
@@ -107,11 +131,48 @@ loop_3 third(
 .addr_dec(addr_dm), 
 .rddata_dec(q_dm), 
 .wrdata_dec(data_dm),
-.wren_dec(wren_dm)
+.wren_dec(wren_dm),
+
+// for cracker
+.k(k_count_fr_l3), // new added for cracker interface
+.new_char(new_char_flag), // new added for cracker interface
+.char_compare(compared_char_flag), // cracker saying its done the comparison
 		   
+.data_xord(char_from_loop_3), // fed into char recieved in cracker
+		   
+.start_over(start_over_flag)  // start over flag 	   
+);		
+
+//////////////////////////////////		
+
+
+
+check_char cracker(
+.clok(CLOCK_50),
+.resetm(KEY[3]),
+.LEDS(led_cracker),
+.new_char(new_char_flag), // character flag from loop_3
+.new_key(new_key_flag),  // new key flag fed to loop 1
+.start_over(start_over_flag), // start over sets all 3 loops in init
+.found_key(found_key_flag), // found the key
+.matched_cont(matched_continue_flag), // character matched move on to next
+.char_recieved(char_from_loop_3), // char from loop 3
+
+.char_count(k_count_fr_l3), // k in loop 3
+
+.done(done_flag),
+.last_key(last_key_flag),
+
+.compared_char(compared_char_flag), // tell loop three you've done the comparison
+
+.key(keyin)// 
+
 );				
 				
-
+				
+				
+				
+				
 	
 //////////////////////////////////////////////////////////	
 	
