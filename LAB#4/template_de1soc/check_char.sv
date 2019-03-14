@@ -49,7 +49,7 @@ always_ff@(posedge clok, negedge resetm) begin
 		new_key<= 0;
 		char_range_counter<=97; 
 		char_range<= 97; // reset char range 
-		key<= 24'b00000000000000010000000;  // reset key  00000000 00000011 11111111
+		key<= 0;//24'b00000000000000010000000;  // reset key  00000000 00000011 11111111
 		LEDS<=0;
 		done<= 0; 
 		last_key <=0;
@@ -142,7 +142,7 @@ always_ff@(posedge clok, negedge resetm) begin
 				
 				if ( flipped_key==0) begin
 				
-				key<=24'b00000000000000010000001;
+				key<=1;//24'b00000000000000010000001;
 				start_over<=1 ; // start over
 				compared_char<=1;
 				new_key<= 1; // raise new key flag
