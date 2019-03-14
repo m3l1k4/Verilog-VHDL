@@ -35,7 +35,7 @@ reached_last_key,
 finished_string
 } state;
 
-
+ 
 
 
 always_ff@(posedge clok, negedge resetm) begin

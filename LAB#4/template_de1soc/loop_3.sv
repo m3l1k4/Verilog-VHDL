@@ -280,7 +280,7 @@ always_ff @(posedge clk, negedge reset) begin
 		
 		wait_for_compare: begin
 		
-		
+	 	
 		
 		if ( start_over) state<= start_over_state;
 		

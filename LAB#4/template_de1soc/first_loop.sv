@@ -70,7 +70,7 @@ always_ff@(posedge clk, negedge reset_n) begin
 		end
 	end 
 	
-	
+	 
 	done: begin
 	
 	if (start_over) state<= start_over_state;

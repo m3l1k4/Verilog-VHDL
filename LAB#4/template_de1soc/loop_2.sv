@@ -153,7 +153,7 @@ always_ff @(posedge clk, negedge rst_n) begin
 				i<=i+1;
 
 			end
-
+ 
 
 			done: begin
 				addr<=0;

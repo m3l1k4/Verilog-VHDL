@@ -29,7 +29,7 @@ logic [3:0] nIn;
 assign clk = CLOCK_50 ;
 assign reset_n = KEY[3];
 
-
+ 
 
 SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
 
