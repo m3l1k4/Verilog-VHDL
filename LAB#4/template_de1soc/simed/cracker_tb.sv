@@ -8,7 +8,7 @@ wire new_char_flag_tb;
 wire start_over_flag_tb, 
 	done_flag_tb,last_key_flag,compared_char_flag_tb;
 
-reg [23:0] char_rec_tb;
+wire [23:0] char_rec_tb;
 wire [23:0] keyin_tb;
 reg [5:0] char_count_tb;
 
@@ -72,6 +72,11 @@ loop_3 third_tb(
 );		
 
 
+char_dummy dum(
+.clock(clock), 
+.reset(reset),
+.num_out(char_rec_tb), .new_char_request(compared_char_flag_tb)
+);
 
 
 
@@ -96,12 +101,12 @@ start_flag_tb<=1;
 end
 
 initial begin
-char_count_tb<=1;
+/*char_count_tb<=1;
 char_rec_tb<= 95;
 #55;
 char_rec_tb<= 99;
 char_count_tb<=5;
-#4;/*
+#4;
 char_rec_tb<= 32;
 char_count_tb<=8;
 #4;

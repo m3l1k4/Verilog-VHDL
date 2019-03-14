@@ -1,17 +1,20 @@
 module char_dummy(
 input clock, input reset,
-output reg [23:0] num_out,
+output reg [23:0] num_out, input logic new_char_request
 );
 
-integer a,b;
+reg [23:0] a,b;
 
 
-always_ff@(posedge clk, negedge reset) begin
+enum {state_a,state_b} dummy;
 
-if (~reset) begin
+always_ff@(posedge clock, negedge reset) begin
+
+if (reset==0) begin
 
 a<= 94;
 b<= 97;
+num_out<= 98;
 
 dummy<= state_a;
 end
@@ -22,21 +25,31 @@ else begin
 
 case(dummy)
 
-state_a: begin
+	state_a: begin	
+	
+	if ( new_char_request) begin
+	a<= a +1;
+	num_out<=b; 
+	dummy<= state_b; 
+	end
+	
+	else dummy<= state_a;
 
-a<= a +1;
-num_out<=a;
-state<= state_b
-
-end
+	end
 
 
-state_b: begin
+	state_b: begin
 
-b<=b+1;
-num_out<= b;
-
-state_a<=a;
+	
+	if ( new_char_request) begin
+	b<=b+1;
+	num_out<= a;
+	dummy<= state_a;
+	end
+	
+	
+		else 
+	dummy<=state_b;
 
 end
 
@@ -44,7 +57,7 @@ end
 endcase 
 
 
-
+end
 end
 
 

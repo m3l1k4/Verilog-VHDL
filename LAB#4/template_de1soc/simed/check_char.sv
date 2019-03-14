@@ -20,7 +20,7 @@ output reg [23:0] key//
 
 
 reg [7:0] char_range; // range 97-122  , increments by 2
-reg [6:0] char_range_counter; // 0 - 12 counter
+reg [7:0] char_range_counter; // 0 - 12 counter
  
 
 parameter key_max =  24'b001111111111111111111111;
@@ -46,7 +46,7 @@ always_ff@(posedge clok, negedge resetm) begin
 		found_key<= 0; // did not find a key 
 		matched_cont<= 0; // its not a match
 		new_key<= 0;
-		char_range_counter<=0; 
+		char_range_counter<=97; 
 		char_range<= 97; // reset char range 
 		key<= 24'b000000000000001001000001 ; // reset key 
 		LEDS<=0;
@@ -86,9 +86,9 @@ always_ff@(posedge clok, negedge resetm) begin
 
 		check_char: begin
 
-			if ( char_range_counter<= 26 ) begin  // comparing 2 at a time 
+			if ( (char_recieved >= 97 && char_recieved<= 122 ) || char_recieved == 32) begin  // comparing 2 at a time 
 
-					if (   (char_recieved == char_range) 
+					/*if (   (char_recieved == char_range) 
 						//|| (char_recieved == ( char_range +1 ) )
 						//|| (char_recieved == ( char_range +2 ) )
 						|| (char_recieved === 32 ) // char_space
@@ -97,11 +97,14 @@ always_ff@(posedge clok, negedge resetm) begin
 						) begin
 					
 					char_range<= 97 ; // reseting range and counter
-					char_range_counter<= 0; 
+					char_range_counter<= 97; 
+					
+					*/
 					
 					start_over<=0 ; // don't start over
 					found_key<= 0; // did not find a key yet
 				
+					
 					compared_char<=1;
 						
 					state<= wait_for_next_char; // go and wait until you get next char 
@@ -113,23 +116,23 @@ always_ff@(posedge clok, negedge resetm) begin
 					
 					matched_cont<= 0; // its not a match
 					compared_char<=0;
-					char_range<= char_range + 1 ; // moving along the 97-122 , doing 2 at a time because it is less cycles
-					char_range_counter<= char_range_counter +1; // counting 0 - 30
+					//char_range<= char_range + 1 ; // moving along the 97-122 , doing 2 at a time because it is less cycles
+					//char_range_counter<= char_range_counter +1; // counting 0 - 30
 					
-					state<= check_char; // compare against next char
+					state<=  reached_last_char; // compare against next char
 					
 					
 					end
 
-			end
+			//end
 					
-
+/*
 			else begin
 			
 			compared_char<=0;
 			state<= reached_last_char; // went through all 97-122 and did not find a match
 
-			end		
+			end		*/
 						
 		end
 
@@ -143,7 +146,10 @@ always_ff@(posedge clok, negedge resetm) begin
 				start_over<=1 ; // start over
 				
 				char_range<= 97 ; // reseting range and counter
-					char_range_counter<= 0;
+					char_range_counter<= 97;
+				
+				
+				compared_char<=1; // this is for testing only remove for real 
 				
 				state<= wait_for_next_char;
 				end
@@ -162,8 +168,8 @@ always_ff@(posedge clok, negedge resetm) begin
 	start_over<=1 ; // start over
 	found_key<= 0; // did not find a key 
 	matched_cont<= 0; // its not a match
-    char_range_counter<=0;
-	char_range<= 0; // reset char range 
+    char_range_counter<=97;
+	char_range<= 97; // reset char range 
 	state<= get_next_key; // request next key 	
 
 		

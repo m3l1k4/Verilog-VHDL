@@ -8,41 +8,65 @@ z2
 !i10f 100
 cModel Technology
 dC:/intelFPGA_lite/17.1
-vcheck_char
+vchar_dummy
 Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-!s110 1552509331
+!s110 1552532285
 !i10b 1
-!s100 VaEGS_VnC@Z5W?c:8dLn81
-I7Wk=kUSc1]zm5WA3h4TXj1
+!s100 0f?fVf_3?1b<Wg]RYMmhf0
+IMKPUkacOVW:j0jk^`Q4H53
 Z1 VDg1SIo80bB@j0V0VzS_@n1
-!s105 check_char_sv_unit
+!s105 char_dummy_sv_unit
 S1
 Z2 dC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed
-w1552509319
-8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv
-FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv
+w1552532277
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/char_dummy.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/char_dummy.sv
 L0 1
 Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-!s108 1552509330.000000
-!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv|
+!s108 1552532285.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/char_dummy.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/char_dummy.sv|
 !i113 1
 Z4 o-work work -sv
 Z5 tCvgOpt 0
+vcheck_char
+R0
+!s110 1552533098
+!i10b 1
+!s100 cdXB=>a1iPh3;Mj?A1fnL3
+I3_]1?MSkfokc7fQZl1;mj1
+R1
+!s105 check_char_sv_unit
+S1
+R2
+w1552533088
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv
+L0 1
+R3
+r1
+!s85 0
+31
+!s108 1552533098.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/check_char.sv|
+!i113 1
+R4
+R5
 vcracker_tb
 R0
-!s110 1552509522
+!s110 1552531873
 !i10b 1
-!s100 e:ID^Z:oJMcB;7QZg9@db1
-IP4ob1;Cg=_HjzLl4FnEcU2
+!s100 <jG7LTS2a09V<n0]328Hd2
+I_HUBE1FVn@[BaU][Hi60c2
 R1
 !s105 cracker_tb_sv_unit
 S1
 R2
-w1552509519
+w1552531859
 8C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv
 FC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv
 L0 1
@@ -50,7 +74,7 @@ R3
 r1
 !s85 0
 31
-!s108 1552509522.000000
+!s108 1552531873.000000
 !s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed/cracker_tb.sv|
 !i113 1
