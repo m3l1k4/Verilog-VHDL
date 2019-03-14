@@ -48,7 +48,7 @@ always_ff@(posedge clok, negedge resetm) begin
 		new_key<= 0;
 		char_range_counter<=97; 
 		char_range<= 97; // reset char range 
-		key<= 24'b000000000000001010000001 ; // reset key  00000000 00000011 11111111
+		key<= 24'b000000000000000010000001 ; // reset key  00000000 00000011 11111111
 		LEDS<=0;
 		done<= 0; 
 		last_key <=0;
