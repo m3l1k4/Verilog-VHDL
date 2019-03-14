@@ -1,7 +1,7 @@
 module check_char(
 input clok,
 input resetm,
-output logic [1:0] LEDS,
+output reg [9:0] LEDS,
 input logic new_char, // character flag from loop_3
 output logic new_key,  // new key flag fed to loop 1
 output logic start_over, // start over sets all 3 loops in init
@@ -48,7 +48,7 @@ always_ff@(posedge clok, negedge resetm) begin
 		new_key<= 0;
 		char_range_counter<=97; 
 		char_range<= 97; // reset char range 
-		key<= 24'b000000000000001001000001 ; // reset key 
+		key<= 24'b000000000000001010000001 ; // reset key  00000000 00000011 11111111
 		LEDS<=0;
 		done<= 0; 
 		last_key <=0;
@@ -88,18 +88,7 @@ always_ff@(posedge clok, negedge resetm) begin
 
 			if ( (char_recieved >= 97 && char_recieved<= 122 ) || char_recieved == 32) begin  // comparing 2 at a time 
 
-					/*if (   (char_recieved == char_range) 
-						//|| (char_recieved == ( char_range +1 ) )
-						//|| (char_recieved == ( char_range +2 ) )
-						|| (char_recieved === 32 ) // char_space
-					 
-						
-						) begin
-					
-					char_range<= 97 ; // reseting range and counter
-					char_range_counter<= 97; 
-					
-					*/
+
 					
 					start_over<=0 ; // don't start over
 					found_key<= 0; // did not find a key yet
@@ -116,23 +105,13 @@ always_ff@(posedge clok, negedge resetm) begin
 					
 					matched_cont<= 0; // its not a match
 					compared_char<=0;
-					//char_range<= char_range + 1 ; // moving along the 97-122 , doing 2 at a time because it is less cycles
-					//char_range_counter<= char_range_counter +1; // counting 0 - 30
 					
 					state<=  reached_last_char; // compare against next char
 					
 					
 					end
 
-			//end
-					
-/*
-			else begin
 			
-			compared_char<=0;
-			state<= reached_last_char; // went through all 97-122 and did not find a match
-
-			end		*/
 						
 		end
 
@@ -166,7 +145,7 @@ always_ff@(posedge clok, negedge resetm) begin
 
 		
 	start_over<=1 ; // start over
-	found_key<= 0; // did not find a key 
+	LEDS[3] <=1;//found_key<= 0; // did not find a key 
 	matched_cont<= 0; // its not a match
     char_range_counter<=97;
 	char_range<= 97; // reset char range 
@@ -187,6 +166,7 @@ always_ff@(posedge clok, negedge resetm) begin
 	finished_string: begin
 	done<= 1;  // assign led 9 to it 
 	LEDS[1]<=1;
+	LEDS[3] <=0;
 	state<= finished_string;
 
 	end

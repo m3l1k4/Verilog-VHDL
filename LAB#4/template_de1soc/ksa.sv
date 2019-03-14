@@ -23,15 +23,29 @@ output           [6:0]      HEX5
 );
 
 logic clk, reset_n;
-logic [6:0] ssOut;
+logic [6:0] ssOut_HEX0, ssOut_HEX1,ssOut_HEX2,ssOut_HEX3,ssOut_HEX4,
+ssOut_HEX5;
 logic [3:0] nIn;
 
 assign clk = CLOCK_50 ;
 assign reset_n = KEY[3];
 
+
+assign HEX0 = ssOut_HEX0;
+assign HEX1 = ssOut_HEX1;
+assign HEX2 = ssOut_HEX2;
+assign HEX3 = ssOut_HEX3;
+assign HEX4 = ssOut_HEX4;
+assign HEX5 = ssOut_HEX5;
+
  
 
-SevenSegmentDisplayDecoder ssd(.ssOut(ssOut), .nIn(nIn));
+SevenSegmentDisplayDecoder ssd_H0(.ssOut(ssOut_HEX0), .nIn(keyin[3:0]));
+SevenSegmentDisplayDecoder ssd_H1(.ssOut(ssOut_HEX1), .nIn(keyin[7:4]));
+SevenSegmentDisplayDecoder ssd_H2(.ssOut(ssOut_HEX2), .nIn(keyin[11:8]));
+SevenSegmentDisplayDecoder ssd_H3(.ssOut(ssOut_HEX3), .nIn(keyin[15:12]));
+SevenSegmentDisplayDecoder ssd_H4(.ssOut(ssOut_HEX4), .nIn(keyin[19:16]));
+SevenSegmentDisplayDecoder ssd_H5(.ssOut(ssOut_HEX5), .nIn(keyin[23:20]));
 
 
 ///===========================================================
@@ -98,9 +112,9 @@ muxdata one_two_sel( .wren_1(wren1), .wren_2(wren2), .wren_3(wren3),
 
 
 		
-logic[1:0] led_cracker;
+wire [9:0] led_cracker;
 
-assign LEDR[8:7] = led_cracker;
+assign LEDR= led_cracker;
 
 wire new_char_flag,  new_key_flag ,
 	start_over_flag, found_key_flag,
