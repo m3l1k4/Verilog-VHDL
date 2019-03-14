@@ -22,6 +22,7 @@ output reg [23:0] key//
 reg [7:0] char_range; // range 97-122  , increments by 2
 reg [7:0] char_range_counter; // 0 - 12 counter
  
+logic flipped_key; 
 
 parameter key_max =  24'b001111111111111111111111;
 
@@ -29,7 +30,7 @@ parameter key_max =  24'b001111111111111111111111;
 enum {
 wait_for_next_char,
 check_char,
-get_next_key,
+get_next_key, one_wait,
 reached_last_char,
 reached_last_key,
 finished_string
@@ -48,10 +49,11 @@ always_ff@(posedge clok, negedge resetm) begin
 		new_key<= 0;
 		char_range_counter<=97; 
 		char_range<= 97; // reset char range 
-		key<= 24'b00000000000000010000000; // reset key  00000000 00000011 11111111
+		key<= 24'b00000000000000010000000;  // reset key  00000000 00000011 11111111
 		LEDS<=0;
 		done<= 0; 
 		last_key <=0;
+		flipped_key<=0;
 		compared_char<=0;
 		state<= wait_for_next_char;
 	
@@ -65,7 +67,7 @@ always_ff@(posedge clok, negedge resetm) begin
 				compared_char<=0;
 				start_over<=0 ; 
 				
-			if ( char_count<= 32) begin // char_count is wired to K in loop_3 directly 
+			if ( char_count< 32) begin // char_count is wired to K in loop_3 directly 
 			
 					if (new_char) begin // loop 3 will raise new char flag once its done the xor
 						
@@ -133,13 +135,35 @@ always_ff@(posedge clok, negedge resetm) begin
 				state<= wait_for_next_char;
 				end
 				
-			else
+			// adding for odd - even key issue
+					
+				
+			else begin
+				
+				if ( flipped_key==0) begin
+				
+				key<=24'b00000000000000010000001;
+				start_over<=1 ; // start over
+				compared_char<=1;
+				new_key<= 1; // raise new key flag
+				flipped_key <= 1;
+				LEDS[4]<=1;
+				state<= one_wait;
+				end
+				
+				else 
 				
 				state<= reached_last_key;
-		
+			end 
 		end
 
 
+		one_wait:  begin
+		start_over<=1 ;
+		state<= wait_for_next_char;
+		
+		end
+		
 	reached_last_char: begin
 
 
