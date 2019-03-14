@@ -18,15 +18,9 @@ output logic done_flag,
 		    output logic [7:0] addr_dec, 
 		   input logic [7:0] rddata_dec, 
 		   output logic [7:0] wrdata_dec,
-		   output logic wren_dec,
+		   output logic wren_dec
 		   
-		   output reg [5:0] k, // new added for cracker interface
-		   output logic new_char, // new added for cracker interface
-		   input logic char_compare, // cracker saying its done the comparison
 		   
-		   output reg [7:0] data_xord,// fed into char recieved in cracker
-		   
-		   input logic start_over
 
 ); 
 
@@ -37,16 +31,15 @@ parameter msg_length = 32;
 parameter k_max = 31 ;  // msg length - 1 
 
 
-integer i,j,m;
-//reg [5:0] k; // made into reg was integer 
+integer i,j,k,m;
 reg [7:0] data_i;
 reg [7:0] data_j;
 reg [7:0] data_f;
 reg [7:0] data_k;
+reg [7:0] data_xord;
 
 
-
-enum{start_over_state, wait_for_start_flag,
+enum{
 calc_i,
 get_s_i,
 
@@ -68,7 +61,7 @@ get_k,
 wait_k,
 wait_k_2,
 save_k,
-f_xor_data_k, wait_for_compare,
+f_xor_data_k,
 write_dec_k,
 done
 } state;
@@ -79,7 +72,7 @@ done
 
 always_ff @(posedge clk, negedge reset) begin
 
-	if (reset == 0  )  begin
+	if (reset == 0 )  begin
 		 i <= 0;
 		 j <= 0;
 		 
@@ -88,53 +81,13 @@ always_ff @(posedge clk, negedge reset) begin
 		 done_flag <= 0; 
 		 wren <= 0; 
 		 wren_dec<=0;
-		 
-		 new_char<=0;
-		 
-		 state<=wait_for_start_flag;
+		 state<=calc_i;
 	end
-	
 	
 	else if (start_flag) begin
 	
 	
 	case(state)
-	
-		
-		start_over_state: begin
-		
-		
-		 i <= 0;
-		 j <= 0;
-		 
-		 k <= 0;
-		 m<= 0;
-		 done_flag <= 0; 
-		 wren <= 0; 
-		 wren_dec<=0;
-		 
-		 new_char<=0;
-		 
-		data_i<=0;
-		data_j<=0;
-		data_f<=0;
-		data_k<=0;
-		
-		
-		 state<= wait_for_start_flag;
-		
-
-		
-		
-		end
-		
-		
-		wait_for_start_flag: begin
-		
-		if ( start_flag) state<= calc_i;
-		else state<= wait_for_start_flag;
-		
-		end
 	
 	
 		calc_i: begin
@@ -146,8 +99,6 @@ always_ff @(posedge clk, negedge reset) begin
 			
 			wren <= 0; 
 			wren_dec<= 0;
-			
-			new_char<=0;
 			
 			state<= get_s_i; 
 			
@@ -273,35 +224,17 @@ always_ff @(posedge clk, negedge reset) begin
 		f_xor_data_k: begin
 		
 			data_xord <= data_f ^ data_k; //f xor encrypted_input[k]
-			state<= wait_for_compare;
-			new_char<=1; 
+			state<= write_dec_k;
 			
 		end
-		
-		wait_for_compare: begin
-		
-	 	
-		
-		if ( start_over) state<= start_over_state;
-		
-		else if ( char_compare) state<= write_dec_k;
-		
-		else state<=wait_for_compare;
-		
-		
-		end
-		
-		
 		
 		write_dec_k: begin
-				
-			new_char<=0; 
-			wrdata_dec<=data_xord;
+		
 			wren_dec<=1;
-			addr_dec<=k;
+			addr_dec<=k;  
+			wrdata_dec<=data_xord;  //decrypted_output[k]
 			k <= k +1;
-			
-			state<= calc_i;  
+			state<= calc_i;
 			
 		
 		end
@@ -315,10 +248,6 @@ always_ff @(posedge clk, negedge reset) begin
 			done_flag<= 1;
 			wren<= 0;
 			wren_dec<= 0;
-			
-			if ( start_over)
-			state<= start_over_state;
-			else
 			state<=done;
 		
 		

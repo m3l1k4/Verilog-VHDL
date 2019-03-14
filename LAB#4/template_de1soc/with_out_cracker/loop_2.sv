@@ -8,10 +8,7 @@ module loop_2(
            output logic [7:0] addr, 
 		   input logic [7:0] rddata, 
 		   output logic [7:0] wrdata, 
-		   output logic wren,
-		   
-		   input logic start_over
-		   
+		   output logic wren
 		   );
 		   
 		   
@@ -26,7 +23,7 @@ reg [7:0] secret_key;
 
 parameter keylength = 3;
 
-enum { start_over_state,
+enum { 
 wait_i, wait_i_2, 
 wait_j, wait_j_2,calcj,
 save_i, save_j,
@@ -44,35 +41,12 @@ always_ff @(posedge clk, negedge rst_n) begin
 		 wren <= 0; 
 		 state<=read_i;
 	 end
-	 
 
 	else if ( first_loop_done) begin
 
 		case (state)
 		 
 
-			start_over_state: begin
-				 
-				 
-				 i <= 0;
-				j <= 0;
-				n <= 0;
-				done_flag <= 0; 
-				wren <= 0; 
-				
-				rdata_i<=0;
-				rdata_j<=0;
-				secret_key<=0;
-								
-		 
-				if ( first_loop_done) state<=read_i;
-				else state<=start_over_state;
-		 
-				
-			
-			end
-			
-			
 			read_i: begin
 
 
@@ -153,15 +127,13 @@ always_ff @(posedge clk, negedge rst_n) begin
 				i<=i+1;
 
 			end
- 
+
 
 			done: begin
 				addr<=0;
 				done_flag<= 1;
 				wren<= 0;
-				if (start_over) state<= start_over_state;
-				
-				else state<=done;
+				state<=done;
 			end
 
 
