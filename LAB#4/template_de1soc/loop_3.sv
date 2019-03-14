@@ -286,6 +286,8 @@ always_ff @(posedge clk, negedge reset) begin
 		
 		else if ( char_compare) state<= write_dec_k;
 		
+		else state<=wait_for_compare;
+		
 		
 		end
 		
