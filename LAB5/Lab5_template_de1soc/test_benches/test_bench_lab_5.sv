@@ -26,9 +26,14 @@ end
 initial begin
 
 rst_tb = 1;
-#3;
+#1;
 rst_tb = 0;
 #1;
+rst_tb = 1;
+#1;
+rst_tb = 0;
+#1;
+
 
 end
 
