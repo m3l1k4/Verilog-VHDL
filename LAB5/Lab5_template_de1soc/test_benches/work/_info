@@ -1,0 +1,133 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Melika/Documents/GitHub/CPEN311/LAB#4/template_de1soc/simed
+vFDC
+Z0 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
+Z1 !s110 1553219948
+!i10b 1
+!s100 O<GBVic5fRJGRYR_G=DSg3
+IAlMbVmg<gD@N:Ye3YGWTO2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+!s105 FDC_sv_unit
+S1
+Z3 dC:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches
+w1553219848
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC.sv
+L0 1
+Z4 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z5 !s108 1553219948.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC.sv|
+!i113 1
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+n@f@d@c
+vFDC_init
+R0
+Z8 !s110 1553219949
+!i10b 1
+!s100 S11Hj3ObQPTb=kKYkiJbh2
+I]VodK<;UV[Och3ifZh`322
+R2
+!s105 FDC_init_sv_unit
+S1
+R3
+w1553219878
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC_init.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC_init.sv
+L0 1
+R4
+r1
+!s85 0
+31
+Z9 !s108 1553219949.000000
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC_init.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/FDC_init.sv|
+!i113 1
+R6
+R7
+n@f@d@c_init
+vLFSR
+R0
+R1
+!i10b 1
+!s100 9z5K?Md71_VgO0b1ZXBdS2
+I^Sn7ZmF`fJB;KnFeOAA<?1
+R2
+!s105 LFSR_sv_unit
+S1
+R3
+w1553219893
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/LFSR.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/LFSR.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/LFSR.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/LFSR.sv|
+!i113 1
+R6
+R7
+n@l@f@s@r
+vtest_bench_lab_5
+R0
+R8
+!i10b 1
+!s100 jm>Z;g:gG:cbPmoaXCNdO0
+IcVgEFI80O6=CXBVMQXcYU0
+R2
+!s105 test_bench_lab_5_sv_unit
+S1
+R3
+w1553219938
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/test_bench_lab_5.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/test_bench_lab_5.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/test_bench_lab_5.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/test_bench_lab_5.sv|
+!i113 1
+R6
+R7
+vxor_gate
+R0
+R8
+!i10b 1
+!s100 RYQ^L4G2zFNY2n`:UBVKV0
+Ifg1i0Ro2BoT93L@fmWORQ0
+R2
+!s105 xor_gate_sv_unit
+S1
+R3
+w1553218161
+8C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/xor_gate.sv
+FC:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/xor_gate.sv
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/xor_gate.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/test_benches/xor_gate.sv|
+!i113 1
+R6
+R7
