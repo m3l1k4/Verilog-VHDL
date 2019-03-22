@@ -25,3 +25,9 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY com.altera.sbtgui.launch 1 0 2019-03-20 19:53:59.063
 !MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x11030 --id=0x0 --timestamp=1553134383 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/qsys_activity/qsys_activity_template_de1soc/software/count_binary/count_binary.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-20 19:59:39.014
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x11030 --id=0x0 --timestamp=1553134383]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-20 19:59:41.899
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x11030 --id=0x0 --timestamp=1553134383 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/qsys_activity/qsys_activity_template_de1soc/software/count_binary/count_binary.elf]
