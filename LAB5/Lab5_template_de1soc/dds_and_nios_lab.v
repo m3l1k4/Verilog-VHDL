@@ -336,14 +336,14 @@ DE1_SoC_QSYS U0(
 (* keep = 1, preserve = 1 *) logic [11:0] actual_selected_modulation;
 (* keep = 1, preserve = 1 *) logic [11:0] actual_selected_signal;
 
-/*
+
 wire Clock_1KHz;
 
 
 LFSR LFSR_0(
 .clk(Clock_1KHz),
-.rst()
-
+.rst(!KEY[1]),
+.lfsr(LFSR)
 );
 
 Generate_Arbitrary_Divided_Clk32 
@@ -353,10 +353,11 @@ clk_1Hz
 .outclk(Clock_1KHz),
 .outclk_Not(),
 .div_clk_count(32'h17D7840),  // 1hz 32'h17D7840
-.Reset(rst)); 
-*/
+.Reset(1'h1)); 
+
 logic [11:0] sino,coso,squo,sawo;
 
+assign actual_selected_modulation = LFSR;
 assign actual_selected_signal = sino;
 
 waveform_gen waves(

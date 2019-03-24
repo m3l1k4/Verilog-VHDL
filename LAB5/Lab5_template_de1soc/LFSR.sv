@@ -2,15 +2,16 @@
 
 module LFSR(
 input clk,
-input rst
-
+input rst,
+//set output lfsr here
+output logic [4:0] lfsr
 
 );
 
 wire out_0,out_1,out_2,out_3,out_4, feedback;
 
 
-logic [4:0] lfsr;
+//logic [4:0] lfsr;
 
 assign lfsr = {out_4, out_3,out_2,out_1,out_0};
 
