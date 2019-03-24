@@ -327,6 +327,8 @@ DE1_SoC_QSYS U0(
 ////////////////////////////////////////////////////////////////////
 // 
 //                       Put DDS + LFSR Code Here
+
+
 //
 ////////////////////////////////////////////////////////////////////		   
 
@@ -334,6 +336,47 @@ DE1_SoC_QSYS U0(
 (* keep = 1, preserve = 1 *) logic [11:0] actual_selected_modulation;
 (* keep = 1, preserve = 1 *) logic [11:0] actual_selected_signal;
 
+/*
+wire Clock_1KHz;
+
+
+LFSR LFSR_0(
+.clk(Clock_1KHz),
+.rst()
+
+);
+
+Generate_Arbitrary_Divided_Clk32 
+clk_1Hz
+(
+.inclk(CLOCK_50),
+.outclk(Clock_1KHz),
+.outclk_Not(),
+.div_clk_count(32'h17D7840),  // 1hz 32'h17D7840
+.Reset(rst)); 
+*/
+logic [11:0] sino,coso,squo,sawo;
+
+assign actual_selected_signal = sino;
+
+waveform_gen waves(
+
+ // -- system signals
+  .clk(CLOCK_50),       //  : in  std_logic;
+  .reset(KEY[1]),     //  : in  std_logic;
+  
+ // -- clock-enable
+ .en(1'b1),         // : in  std_logic;
+  
+  //-- NCO frequency control
+ .phase_inc(258),   //inc = Fout⋅232/ Fs 0.5   //(3e-6(2^32))/50 + 0.5  = 258.19803776 =258   3hz
+  
+//  -- Output waveforms
+  .sin_out(sino),   //  : out std_logic_vector(11 downto 0);
+  .cos_out(coso),   //  : out std_logic_vector(11 downto 0);
+  .squ_out(squo),  //   : out std_logic_vector(11 downto 0);
+  .saw_out(sawo) );  //   : out std_logic_vector(11 downto 0) );
+//*/
 
 ////////////////////////////////////////////////////////////////////
 // 
