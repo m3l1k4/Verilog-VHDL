@@ -31,3 +31,48 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY com.altera.sbtgui.launch 1 0 2019-03-20 19:59:41.899
 !MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x11030 --id=0x0 --timestamp=1553134383 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/qsys_activity/qsys_activity_template_de1soc/software/count_binary/count_binary.elf]
+!SESSION 2019-03-23 21:25:05.347 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.8.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_CA
+Framework arguments:  -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/altera/14.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.cpp.product -pluginCustomization C:/altera/14.1/nios2eds/bin/eclipse_nios2/plugin_customization.ini
+
+!ENTRY org.eclipse.egit.ui 2 0 2019-03-23 21:25:46.399
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-03-23 21:34:01.316
+!MESSAGE Indexed 'lab5' (22 sources, 10 headers) in 7.66 sec: 1,418 declarations; 3,963 references; 39 unresolved inclusions; 2 syntax errors; 97 unresolved names (1.77%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2019-03-23 21:35:26.371
+!MESSAGE Indexed 'lab5_bsp' (94 sources, 161 headers) in 7.24 sec: 6,342 declarations; 15,289 references; 10 unresolved inclusions; 4 syntax errors; 54 unresolved names (0.25%)
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 21:52:50.249
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x80011c0 --id=0x0 --timestamp=1489109339]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 21:52:53.616
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x80011c0 --id=0x0 --timestamp=1489109339 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 22:46:43.397
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 22:46:44.892
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x80011c0 --id=0x0 --timestamp=1489109339]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 22:46:48.488
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x80011c0 --id=0x0 --timestamp=1489109339 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 23:31:52.043
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 23:31:53.165
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --sidp=0x80011c0 --id=0x0 --timestamp=1489109339]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-23 23:31:56.439
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --sidp=0x80011c0 --id=0x0 --timestamp=1489109339 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]

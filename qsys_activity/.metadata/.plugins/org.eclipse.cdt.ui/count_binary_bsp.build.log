@@ -1,6 +1,6 @@
-19:45:54 **** Clean-only build of configuration Nios II for project count_binary_bsp ****
-make clean 
-[BSP clean complete]
+22:45:13 **** Incremental Build of configuration Nios II for project count_binary_bsp ****
+make all 
+[BSP build complete]
 
-19:45:56 Build Finished (took 2s.712ms)
+22:45:15 Build Finished (took 2s.612ms)
 
