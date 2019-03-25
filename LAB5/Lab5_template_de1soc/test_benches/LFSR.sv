@@ -2,8 +2,8 @@
 
 module LFSR(
 input clk,
-input rst
-
+input rst,
+output logic [4:0] lfsr_out
 
 );
 
@@ -13,7 +13,7 @@ wire out_0,out_1,out_2,out_3,out_4, feedback;
 logic [4:0] lfsr;
 
 assign lfsr = {out_4, out_3,out_2,out_1,out_0};
-
+assign lfsr_out = lfsr;
 
 FDC_init lfsr_3( .D(out_4), .Q(out_3), .C(Clock_1KHz), .clr(rst));
 FDC lfsr_2( .D(out_3), .Q(out_2), .C(Clock_1KHz), .clr(rst));
@@ -37,4 +37,4 @@ clk_1Hz
 .Reset(rst)); 
 
 
-endmodule
+endmodule 

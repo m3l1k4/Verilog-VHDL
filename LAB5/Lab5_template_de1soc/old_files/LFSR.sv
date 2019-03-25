@@ -1,7 +1,7 @@
 //`timescale 1ns / 1ps
 
 module LFSR(
-input Clock_1KHz,
+input clk,
 input rst,
 output logic [4:0] lfsr_out
 
@@ -25,6 +25,16 @@ xor_gate xored(.a(out_0), .b(out_2),.c(feedback));
 
 FDC lfsr_4( .D(feedback), .Q(out_4), .C(Clock_1KHz), .clr(rst));
 
-
+/*
+// for testing remove after
+Generate_Arbitrary_Divided_Clk32 
+clk_1Hz
+(
+.inclk(clk),
+.outclk(Clock_1KHz),
+.outclk_Not(),
+.div_clk_count(5),  // 1hz 32'h17D7840
+.Reset(rst)); 
+*/
 
 endmodule 

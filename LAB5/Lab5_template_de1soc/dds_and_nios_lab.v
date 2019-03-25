@@ -338,26 +338,70 @@ DE1_SoC_QSYS U0(
 
 
 wire Clock_1KHz;
-
-
-LFSR LFSR_0(
-.clk(Clock_1KHz),
-.rst(!KEY[1]),
-.lfsr(LFSR)
-);
-
+/*
 Generate_Arbitrary_Divided_Clk32 
 clk_1Hz
 (
 .inclk(CLOCK_50),
-.outclk(Clock_1KHz),
+.outclk(Clock_1KHz), // its actually 1hz too lazy to change all the signal names
 .outclk_Not(),
 .div_clk_count(32'h17D7840),  // 1hz 32'h17D7840
 .Reset(1'h1)); 
 
-logic [11:0] sino,coso,squo,sawo;
 
-assign actual_selected_modulation = LFSR;
+LFSR LFSR_0(
+.Clock_1KHz(Clock_1KHz),
+.rst(SW[2]),
+.lfsr_out(LFSR)
+);
+
+logic out_sync_sig;
+
+edge_detect detec_tb( 
+
+// receiveing sub ssytem
+.clk_receive(CLOCK_50),
+.reset(SW[2]),
+.out_edge(out_sync_sig), // synnced signal
+// sending subsys
+.clk_send(Clock_1KHz), // lfsr clock
+.en(LFSR[0])  //lfsr zeroth bit
+
+
+);
+
+logic vga_syn_sig;
+
+edge_detect vga_clk_sync( 
+
+// receiveing sub ssytem
+.clk_receive(sampler),
+.reset(SW[2]),
+.out_edge(vga_syn_sig), // synnced signal
+// sending subsys
+.clk_send(CLOCK_50), // lfsr clock
+.en(LFSR[0])  //lfsr zeroth bit
+
+
+); */
+
+//assign modulated_signal = ~out_sync_sig*sino;
+//assign mod_to_vga = vga_syn_sig? modulated_signal:0;
+
+//assign LEDR[0] = (( LFSR[0]==0) ? 1 : 0);
+	
+logic [11:0] sino,coso,squo,sawo;
+logic [11:0] modulated_signal, mod_to_vga;
+
+ BASK_mod ask(
+ .clk(CLOCK_50),
+ .rst(SW[2]),
+ .din(sino),
+ .dout(modulated_signal),
+ // previously outsync tb
+ ); 
+
+assign actual_selected_modulation = modulated_signal;
 assign actual_selected_signal = sino;
 
 waveform_gen waves(

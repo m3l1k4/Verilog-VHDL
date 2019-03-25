@@ -13,7 +13,7 @@ logic [11:0] modulated_signal;
 
 wire [4:0] lf_out;
 
-//assign modulated_signal = out_sync_sig*sino_tb;
+assign modulated_signal = out_sync_sig*sino_tb;
 
 LFSR lfsr_tbr(
 .Clock_1KHz(Clock_1KHz),
@@ -30,7 +30,7 @@ clk_1Hz
 .inclk(CLOCK_50_tb),
 .outclk(Clock_1KHz), //Clock_1KHz
 .outclk_Not(),
-.div_clk_count(25),  // 1hz 32'h17D7840
+.div_clk_count(5),  // 1hz 32'h17D7840
 .Reset(rst_tb)); 
 
 
@@ -50,24 +50,7 @@ edge_detect detec_tb(
 );
 
 
-logic [11:0] din_tb, dout_tb;
 
-assign din_tb = sino_tb;
-
- BASK_mod ask(
- .clk(CLOCK_50_tb),
- .rst(rst_tb),
- .din(din_tb),
- .dout(dout_tb)
- // previously outsync tb
- ); 
-
- 
- initial begin
- 
- 
- 
- end
 
 /*
  sig_mod_2 mood_tb(
@@ -81,7 +64,7 @@ assign din_tb = sino_tb;
 );
 		
 	
-	*/	
+		
 waveform_gen waves_tb(
 
  // -- system signals
@@ -99,8 +82,8 @@ waveform_gen waves_tb(
   .cos_out(),   //  
   .squ_out(),  //   
   .saw_out() );  //  	
-		
-//
+*/		
+//*/
 initial forever begin
 // slow clock
 clk_tb = 1;
