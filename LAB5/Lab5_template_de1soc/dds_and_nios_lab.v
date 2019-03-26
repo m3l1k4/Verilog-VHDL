@@ -392,17 +392,32 @@ edge_detect vga_clk_sync(
 	
 logic [11:0] sino,coso,squo,sawo;
 logic [11:0] modulated_signal, mod_to_vga;
-
+logic [11:0] sig__select_out;
+/*
  BASK_mod ask(
  .clk(CLOCK_50),
  .rst(SW[2]),
  .din(sino),
  .dout(modulated_signal),
  // previously outsync tb
- ); 
+ );  */
 
+signal_relay select_sig(
+.signal_key(signal_selector[1:0]),
+.sig_0(sino),
+.sig_2(sawo),
+.sig_3(squo),
+.sig_1(coso),
+
+.sig_out(sig__select_out),
+
+.clk(CLOCK_50)
+);
+ 
+ 
+ 
 assign actual_selected_modulation = modulated_signal;
-assign actual_selected_signal = sino;
+assign actual_selected_signal = sig__select_out;
 
 waveform_gen waves(
 
