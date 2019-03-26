@@ -381,27 +381,14 @@ send_lfsr_to_vga lfsr_2_vga_tb(
 
 
 );
-logic [11:0] modulated_signal_OOK;
+logic [11:0] modulated_signal_OOK, modulate_signal_fsr;
+logic [11:0] lfsr_wave_full;
 
 assign modulated_signal_OOK = (!lfsr_to_vga)*sino;
+assign lfsr_wave_full = {12{lfsr_to_vga}};
+assign modulate_signal_fsr ={~lfsr_wave_full[11],lfsr_wave_full[10:0]};
 
-assign LEDR[9:0] = modulated_signal_OOK[9:0];
-
-/*
-logic vga_syn_sig;
-
-edge_detect vga_clk_sync( 
-
-// receiveing sub ssytem
-.clk_receive(sampler),
-.reset(SW[2]),
-.out_edge(vga_syn_sig), // synnced signal
-// sending subsys
-.clk_send(CLOCK_50), // lfsr clock
-.en(LFSR[0])  //lfsr zeroth bit
-
-
-); */
+assign LEDR[3:0] = modulate_signal_fsr[3:0];
 
 
 	
@@ -425,7 +412,7 @@ signal_relay select_sig_mot(
 .signal_key(modulation_selector[1:0]),
 .sig_0(modulated_signal_OOK), //00  
 .sig_2(),//bpsk 01
-.sig_3(lfsr_to_vga),// lfsr 11
+.sig_3(modulate_signal_fsr),// lfsr 11
 .sig_1(squo), //10
 
 .sig_out(sig_mod_out),

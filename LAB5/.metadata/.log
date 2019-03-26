@@ -208,3 +208,93 @@ java.lang.Exception: System timestamp mismatch - connected: "1488964064", expect
 
 !ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 22:38:27.200
 !MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:26:09.294
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:26:10.338
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:26:12.885
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:33:23.572
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:33:24.667
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:33:27.322
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:34:53.529
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:34:54.542
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-25 23:34:57.029
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 00:26:58.398
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 00:26:59.517
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 00:27:02.287
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 00:51:21.147
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 00:51:22.159
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 00:51:24.850
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 01:20:36.073
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 01:20:37.077
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 01:20:39.659
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 01:58:25.822
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 01:58:26.860
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 01:58:29.468
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:25:33.935
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:25:35.129
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:25:38.069
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:28:47.355
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:28:48.515
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:28:51.189
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:31:16.627
+!MESSAGE Terminated Launch with connection: 20DE-SoC on localhost [USB-1]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:31:17.765
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --stop --accept-bad-sysid --sidp=0x80011c0]
+
+!ENTRY com.altera.sbtgui.launch 1 0 2019-03-26 02:31:20.430
+!MESSAGE Executing: [C:/altera/14.1/quartus\bin64\cygwin\bin\bash.exe, -c, nios2-download '--cable=DE-SoC on localhost [USB-1]' --device=2 --instance=0 --go --accept-bad-sysid --sidp=0x80011c0 /cygdrive/c/Users/Melika/Documents/GitHub/CPEN311/LAB5/Lab5_template_de1soc/software/lab5/lab5.elf]
