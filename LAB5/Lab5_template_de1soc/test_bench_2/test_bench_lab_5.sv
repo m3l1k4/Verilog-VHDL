@@ -1,19 +1,18 @@
 //`timescale 1ns / 1ps
 module test_bench_lab_5();
 
-
 reg clk_tb, rst_tb,CLOCK_50_tb;
-
 wire  [4:0] lfsr_tb;
 wire out_sync_tb;
-logic [11:0] sino_tb, mod_sig_tb ;
+logic [11:0] sino_tb, sino_wave_tb, mod_sig_tb ;
 logic out_sync_sig;
 logic Clock_1KHz;
-logic [11:0] modulated_signal;
-
+logic [11:0] modulated_signal_tb;
 wire [4:0] lf_out;
 
-//assign modulated_signal = out_sync_sig*sino_tb;
+logic lfsr_0_wave;
+assign lfsr_0_wave = lfsr_tb[0];
+assign modulated_signal_tb = (!lfsr_0_wave)* sino_wave_tb;
 
 LFSR lfsr_tbr(
 .Clock_1KHz(Clock_1KHz),
@@ -30,7 +29,7 @@ clk_1Hz
 .inclk(CLOCK_50_tb),
 .outclk(Clock_1KHz), //Clock_1KHz
 .outclk_Not(),
-.div_clk_count(25),  // 1hz 32'h17D7840
+.div_clk_count(40),  // 1hz 32'h17D7840
 .Reset(rst_tb)); 
 
 
@@ -44,44 +43,45 @@ edge_detect detec_tb(
 .out_edge(out_sync_sig), // synnced signal
 // sending subsys
 .clk_send(Clock_1KHz), // lfsr clock
-.en(lfsr_tb[0])  //lfsr zeroth bit
+.en(1)  //lfsr zeroth bit
 
 
 );
 
 
-logic [11:0] din_tb, dout_tb;
-
-assign din_tb = sino_tb;
-
+ logic [11:0] din_tb, dout_tb;
+assign din_tb = sino_wave_tb;
+/*
  BASK_mod ask(
  .clk(CLOCK_50_tb),
  .rst(rst_tb),
  .din(din_tb),
  .dout(dout_tb)
  // previously outsync tb
- ); 
+ ); */
 
  
- initial begin
- 
- 
- 
- end
-
 /*
  sig_mod_2 mood_tb(
 //input clock,
 //input reset,
 //.sync_sig(out_sync),
-.lfsr_0(out_sync_tb),
+.lfsr_0(out_sync_sig),
 .org_wave(sino_tb),
 .mod_sig(mod_sig_tb)
 
-);
+); */
+
+
+ 
+ logic [31:0] saw_out, sq_out;
+ accum_saw acc(.clk(CLOCK_50_tb), .out(saw_out));
+ accum_sq accsq(.clk(CLOCK_50_tb), .out(sq_out));
+
 		
 	
-	*/	
+	
+	 //waveform_gen_tb
 waveform_gen waves_tb(
 
  // -- system signals
@@ -92,10 +92,10 @@ waveform_gen waves_tb(
  .en(1'b1),         // : in  std_logic;
   
   //-- NCO frequency control
- .phase_inc(258),   //inc = Fout⋅232/ Fs 0.5   //(3e-6(2^32))/50 + 0.5  = 258.19803776 =258   3hz
+ .phase_inc(59000000),   //inc = Fout⋅232/ Fs 0.5   //(3e-6(2^32))/50 + 0.5  = 258.19803776 =258   3hz
   
 //  -- Output waveforms
-  .sin_out(sino_tb),   // 
+  .sin_out(sino_wave_tb),   // 
   .cos_out(),   //  
   .squ_out(),  //   
   .saw_out() );  //  	
@@ -130,8 +130,8 @@ rst_tb = 0;
 #1;
 
 end
-
-
+/*
+// sin lut
 initial forever begin
 
 sino_tb=12'h000;#1; sino_tb=12'h003;#1; sino_tb=12'h006;#1; sino_tb=12'h009;#1; sino_tb=12'h00d;#1; sino_tb=12'h010;#1; sino_tb=12'h013;#1; sino_tb=12'h016;#1; 
@@ -650,5 +650,7 @@ sino_tb=12'hfe7;#1; sino_tb=12'hfea;#1; sino_tb=12'hfed;#1; sino_tb=12'hff0;#1; 
 
 end
 
+
+*/
 
 endmodule
