@@ -1,9 +1,9 @@
-20:07:11 **** Incremental Build of configuration Nios II for project lab5 ****
+22:38:20 **** Incremental Build of configuration Nios II for project lab5 ****
 make all 
 Info: Building ../lab5_bsp/
 C:/altera/14.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../lab5_bsp/
 [BSP build complete]
 [lab5 build complete]
 
-20:07:14 Build Finished (took 2s.904ms)
+22:38:22 Build Finished (took 2s.799ms)
 
